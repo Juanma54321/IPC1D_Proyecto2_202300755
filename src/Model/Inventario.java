@@ -1,8 +1,7 @@
 
 package Model;
 
-import static Model.Usuarios.libreria_usuarios;
-import View.LoginVista;
+import View.RepuestosVista;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,11 +12,13 @@ public class Inventario {
     private String nombre;
     private String marca;
     private String modelo;
-    private byte existencia;
+    private int existencia;
     private float precio;
     
     //libreria donde se llevara el inventario
-     public static Inventario [] libreria_inventario= new Inventario[100];
+    public static Inventario [] libreria_inventario= new Inventario[100];
+     
+    private static int contador_dinamico=0;
 
     public String getID() {
         return ID;
@@ -51,11 +52,11 @@ public class Inventario {
         this.modelo = modelo;
     }
 
-    public byte getExistencia() {
+    public int getExistencia() {
         return existencia;
     }
 
-    public void setExistencia(byte existencia) {
+    public void setExistencia(int existencia) {
         this.existencia = existencia;
     }
 
@@ -71,7 +72,7 @@ public class Inventario {
     
     
     //metodo para poder registrar usuarios en el sistema
-    public void RegistroRepuestos(String ruta, LoginVista view){
+    public void RegistroRepuestos(String ruta, RepuestosVista view){
         
         //verificando la extencion del archivo
         if (ruta.contains(".tmr")) {
@@ -81,28 +82,56 @@ public class Inventario {
                 try{
                     //registrando los datos del archivo
                     String[] listatemporal;
-                    int contador=0;
+                    String listaConcatenada;
 
-                    //guardando los datos en una lista temporal
-                    listatemporal= lector.readLine().split("-");
+                    //leyendo cada liena del archivo
+                    while((listaConcatenada=lector.readLine())!=null){
+                        boolean repuesto_existente=true;
+                        
+                        //guardando los datos en una lista temporal
+                        listatemporal= listaConcatenada.split("-");
+                        
+                        //verificando que la lista este correcta
+                        if (listatemporal.length!=5) {
+                            JOptionPane.showMessageDialog(view,"Error al guardar los datos","ERROR", JOptionPane.ERROR_MESSAGE);
+                            break;
+                        }
+                        
+                        //creando el objeto con las caracteristicas de un clinte
+                        Inventario b1 = new Inventario();
+                        
+                        //registrando los datos de la lista temporal
+                        b1.nombre=listatemporal[0];
+                        b1.marca=listatemporal[1];
+                        b1.modelo=listatemporal[2];
+                        b1.existencia=Integer.parseInt(listatemporal[3]);
+                        b1.precio=Float.parseFloat(listatemporal[4]);
+                        
+                        //buscando si el repuesto ya existe en el inventario
+                        for (int i = 0; i < ContadorRepuestos(); i++) {
+                            System.out.println(i);
+                            //si existe, se sumara a la existencia
+                            if (libreria_inventario[i].getNombre().equals(b1.nombre ) && libreria_inventario[i].getModelo().equals(b1.modelo) && libreria_inventario[i].getPrecio()==b1.precio) {
+                                int existencia_original= libreria_inventario[i].getExistencia();
+                                //sumamdo la nueva existencia
+                                existencia_original= existencia_original+b1.existencia;
+                                
+                                libreria_inventario[i].setExistencia(existencia_original);
+                                
+                                repuesto_existente=false;
+                                break;
+                            }
+                        }
+                        
+                        //si el repuesto no existe
+                        if (repuesto_existente) {
+                            b1.ID="IPC1D"+contador_dinamico;
 
-                    //creando el objeto con las caracteristicas de un clinte
-                    Usuarios p1 = new Usuarios();
-                    
-                    //registrando los datos de la lista temporal
-                    p1.cui=Long.getLong(listatemporal[0]);
-                    p1.nombre=listatemporal[1];
-                    p1.nombre_usuario=listatemporal[2];
-                    p1.password=listatemporal[3];
-                    if (listatemporal[4].equals("oro")){
-                        p1.cliente_oro=true;
+                            //guardando el repuesto en la libreria global
+                            libreria_inventario[contador_dinamico]=b1;
+                            this.contador_dinamico++;
+                        }
                     }
-                    p1.vehiculos=listatemporal[5].split(";");
-                    
-                    //guardando al cliente en la libreria global
-                    libreria_usuarios[this.contador] = p1;
-                    
-                    this.contador++;
                 }
                 catch(IOException f){
                     //mensaje de error
@@ -117,7 +146,20 @@ public class Inventario {
             //mensaje de error
             JOptionPane.showMessageDialog(view,"Archivo no valido","ERROR", JOptionPane.ERROR_MESSAGE);
         }
+    }    
+    
+    
+    //metodo para contar cuantos repuestos existen
+    public int ContadorRepuestos(){
+        int numero=0;
+        for (int i = 0; i < 50; i++) {
+            if (libreria_inventario[i]!=null) {
+                numero++;
+            }
+        }
+        return numero;
     }
+    
     
     
     

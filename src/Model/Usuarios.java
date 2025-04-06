@@ -21,6 +21,11 @@ public class Usuarios {
     //contador didamico para poder ingresar usuarios
     private static byte contador=0;
 
+    //usuario administrativo
+    String usuariopriv= "Juanma321";
+    String passwordpriv="hola";
+        
+    
     //set y get de la clase
     public long getCui() {
         return cui;
@@ -61,6 +66,15 @@ public class Usuarios {
     public void setCliente_oro(boolean cliente_oro) {
         this.cliente_oro = cliente_oro;
     }
+
+    public String[] getVehiculos() {
+        return vehiculos;
+    }
+
+    public void setVehiculos(String[] vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+    
     
     //metodo para poder registrar usuarios en el sistema
     public void RegistroUsuario(String ruta, LoginVista view){
@@ -73,7 +87,6 @@ public class Usuarios {
                 try{
                     //registrando los datos del archivo
                     String[] listatemporal;
-                    int contador=0;
 
                     //guardando los datos en una lista temporal
                     listatemporal= lector.readLine().split("-");
@@ -82,7 +95,7 @@ public class Usuarios {
                     Usuarios p1 = new Usuarios();
                     
                     //registrando los datos de la lista temporal
-                    p1.cui=Long.getLong(listatemporal[0]);
+                    p1.cui=Long.parseLong(listatemporal[0]);
                     p1.nombre=listatemporal[1];
                     p1.nombre_usuario=listatemporal[2];
                     p1.password=listatemporal[3];
@@ -111,5 +124,37 @@ public class Usuarios {
         }
     }
     
+    //metodo para contar cuantos usuarios existen
+    public int ContadorUsuarios(){
+        int numero=0;
+        for (int i = 0; i < 50; i++) {
+            if (libreria_usuarios[0]!=null) {
+                numero++;
+            }
+        }
     
+        return numero;
+    }
+    
+    //metodo para verificar los datos de login
+    public byte ConfirmarInformacion(String user, String pass){
+        byte condicion=0;
+        
+        //verificando si es un usuario administrativo
+        if (user.equals("Juanma321") && pass.equals("hola")) {
+            condicion=1;
+            return condicion;
+        }
+        
+        //recorriendo toda la libreria de usuarios registrados
+        for (int i = 0; i < ContadorUsuarios(); i++) {
+            
+            //verificando si existe el usuario
+            if(user.equals(libreria_usuarios[i].nombre_usuario) && pass.equals(libreria_usuarios[i].getPassword())){
+                condicion=2;
+                return condicion;
+            }
+        }
+        return condicion;
+    }
 }
