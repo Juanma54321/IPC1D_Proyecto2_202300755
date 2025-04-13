@@ -109,7 +109,6 @@ public class Inventario {
                         
                         //buscando si el repuesto ya existe en el inventario
                         for (int i = 0; i < ContadorRepuestos(); i++) {
-                            System.out.println(i);
                             //si existe, se sumara a la existencia
                             if (libreria_inventario[i].getNombre().equals(b1.nombre ) && libreria_inventario[i].getModelo().equals(b1.modelo) && libreria_inventario[i].getPrecio()==b1.precio) {
                                 int existencia_original= libreria_inventario[i].getExistencia();
@@ -128,7 +127,7 @@ public class Inventario {
                             b1.ID="IPC1D"+contador_dinamico;
 
                             //guardando el repuesto en la libreria global
-                            libreria_inventario[contador_dinamico]=b1;
+                            libreria_inventario[ContadorRepuestos()]=b1;
                             this.contador_dinamico++;
                         }
                     }

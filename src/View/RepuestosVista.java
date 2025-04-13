@@ -29,6 +29,8 @@ public class RepuestosVista extends javax.swing.JFrame {
         TablaRepuestos = new javax.swing.JTable();
         BtnCargar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        BtnEliminar = new javax.swing.JButton();
+        BtnGuardar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,12 +63,34 @@ public class RepuestosVista extends javax.swing.JFrame {
         BtnCargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Repuesto.png"))); // NOI18N
         BtnCargar.setText("<html><center>Cargar Repeuestos</center></html>");
         BtnCargar.setActionCommand("Cargar");
-        jPanel1.add(BtnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 130, 40));
+        jPanel1.add(BtnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 130, 40));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("*para modificar, cambia los datos de la tabla");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
+
+        BtnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
+        BtnEliminar.setText("<html><center>Eliminar Repuesto </center></html>");
+        BtnEliminar.setActionCommand("Eliminar");
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 240, 120, 40));
+
+        BtnGuardar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        BtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
+        BtnGuardar.setText("<html><center>Guardar Cambios </center></html>");
+        BtnGuardar.setActionCommand("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,6 +105,14 @@ public class RepuestosVista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -119,6 +151,8 @@ public class RepuestosVista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton BtnCargar;
+    public javax.swing.JButton BtnEliminar;
+    public javax.swing.JButton BtnGuardar;
     public javax.swing.JTable TablaRepuestos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
