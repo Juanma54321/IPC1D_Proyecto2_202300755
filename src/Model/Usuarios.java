@@ -1,7 +1,7 @@
 
 package Model;
 
-import View.LoginVista;
+import View.UsuariosAdminVista;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -77,7 +77,9 @@ public class Usuarios {
     
     
     //metodo para poder registrar usuarios en el sistema
-    public void RegistroUsuario(String ruta, LoginVista view){
+    public void RegistroUsuario(String ruta, UsuariosAdminVista view){
+        boolean usuarioRepetido=false;
+        
         
         //verificando la extencion del archivo
         if (ruta.contains(".tmca")) {
@@ -87,27 +89,44 @@ public class Usuarios {
                 try{
                     //registrando los datos del archivo
                     String[] listatemporal;
-
-                    //guardando los datos en una lista temporal
-                    listatemporal= lector.readLine().split("-");
-
-                    //creando el objeto con las caracteristicas de un clinte
-                    Usuarios p1 = new Usuarios();
+                    String listaConcatenada;
                     
-                    //registrando los datos de la lista temporal
-                    p1.cui=Long.parseLong(listatemporal[0]);
-                    p1.nombre=listatemporal[1];
-                    p1.nombre_usuario=listatemporal[2];
-                    p1.password=listatemporal[3];
-                    if (listatemporal[4].equals("oro")){
-                        p1.cliente_oro=true;
+                    //leyendo cada linea del archivo
+                    while((listaConcatenada=lector.readLine())!=null){
+                        usuarioRepetido=false;
+    
+                        //guardando los datos en una lista temporal
+                        listatemporal= listaConcatenada.split("-");
+                        
+                        //verificando si la lista esta correcta
+                        if (listatemporal.length!=6) {
+                            JOptionPane.showMessageDialog(view,"error al leer el archivo","ERROR", JOptionPane.ERROR_MESSAGE);
+                            break;
+                            
+                        }
+                        
+                        //creando el objeto con las caracteristicas de un clinte
+                        Usuarios p1 = new Usuarios();
+                        
+                        
+                        
+                        //si no existen usuarios repetidos, se guardan
+                        if (!usuarioRepetido) {
+                            //registrando los datos de la lista temporal
+                            p1.cui=Long.parseLong(listatemporal[0]);
+                            p1.nombre=listatemporal[1];
+                            p1.nombre_usuario=listatemporal[2];
+                            p1.password=listatemporal[3];
+                            if (listatemporal[4].equals("oro")){
+                                p1.cliente_oro=true;
+                            }
+                            p1.vehiculos=listatemporal[5].split(";");
+
+                            //guardando al cliente en la libreria global
+                            libreria_usuarios[ContadorUsuarios()] = p1;
+                        }
                     }
-                    p1.vehiculos=listatemporal[5].split(";");
                     
-                    //guardando al cliente en la libreria global
-                    libreria_usuarios[this.contador] = p1;
-                    
-                    this.contador++;
                 }
                 catch(IOException f){
                     //mensaje de error
@@ -128,7 +147,7 @@ public class Usuarios {
     public int ContadorUsuarios(){
         int numero=0;
         for (int i = 0; i < 50; i++) {
-            if (libreria_usuarios[0]!=null) {
+            if (libreria_usuarios[i]!=null) {
                 numero++;
             }
         }

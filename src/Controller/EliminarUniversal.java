@@ -3,18 +3,18 @@ package Controller;
 
 import static Model.Inventario.libreria_inventario;
 import static Model.Usuarios.libreria_usuarios;
-import View.EliminarVista1;
-import View.EliminiarVista;
+
+import View.EliminarVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 public class EliminarUniversal implements ActionListener{
-    private EliminiarVista view;
+    private EliminarVista view;
     private boolean LibreriaRepuestos=false;
     private boolean LibreriaUsuarios=false;
 
-    public EliminarUniversal(EliminiarVista view) {
+    public EliminarUniversal(EliminarVista view) {
         this.view = view;
         this.view.BtnEliminar.addActionListener(this);
     }

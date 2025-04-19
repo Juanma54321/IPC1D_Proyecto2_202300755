@@ -3,8 +3,8 @@ package Controller;
 
 import Model.Inventario;
 import static Model.Inventario.libreria_inventario;
-import View.EliminarVista1;
-import View.EliminiarVista;
+
+import View.EliminarVista;
 import View.RepuestosVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +47,6 @@ public class InventarioAdmin implements ActionListener {
             Inventario b1 = new Inventario();
             b1=libreria_inventario[i];
             
-            
             //guardando los datos en la nueva tabla
             tablaNueva.addRow(new Object[]{
                 b1.getID(),
@@ -82,8 +81,7 @@ public class InventarioAdmin implements ActionListener {
         //Forzando a que deje de editar la celda para poder guardar
         if (view.TablaRepuestos.isEditing()) {
             view.TablaRepuestos.getCellEditor().stopCellEditing();
-        }
-        
+        }    
     
         if (fila != -1) {
         // Obtener los datos de la fila modificada
@@ -146,7 +144,7 @@ public class InventarioAdmin implements ActionListener {
                 
                 if (model.ContadorRepuestos()>0) {
                     
-                    EliminiarVista view1 = new EliminiarVista(null,true);
+                    EliminarVista view1 = new EliminarVista(null,true);
                 
                     EliminarUniversal control = new EliminarUniversal(view1);
 

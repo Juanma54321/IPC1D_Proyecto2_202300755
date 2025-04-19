@@ -6,6 +6,7 @@ import Model.Usuarios;
 import View.AdminVista;
 import View.LoginVista;
 import View.RepuestosVista;
+import View.UsuariosAdminVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +17,7 @@ public class Admin implements ActionListener{
         this.view = view;
         this.view.BtnCerrar.addActionListener(this);
         this.view.BtnRepuestos.addActionListener(this);
+        this.view.BtnClietnes.addActionListener(this);
     }
     
     //metodo para iniciar la vista
@@ -54,6 +56,15 @@ public class Admin implements ActionListener{
                 InventarioAdmin controller = new InventarioAdmin(model,view);
                 
                 controller.IniciarRepuestos();
+                
+                break;
+            case ("Clientes"):
+                Usuarios model2 = new Usuarios();
+                UsuariosAdminVista view2 = new UsuariosAdminVista();
+                
+                UsuariosAdmin controller1 = new UsuariosAdmin(view2,model2);
+                
+                controller1.IniciarVista();
                 
                 break;
         }

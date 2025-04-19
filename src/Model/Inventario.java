@@ -110,7 +110,7 @@ public class Inventario {
                         //buscando si el repuesto ya existe en el inventario
                         for (int i = 0; i < ContadorRepuestos(); i++) {
                             //si existe, se sumara a la existencia
-                            if (libreria_inventario[i].getNombre().equals(b1.nombre ) && libreria_inventario[i].getModelo().equals(b1.modelo) && libreria_inventario[i].getPrecio()==b1.precio) {
+                            if (libreria_inventario[i].getNombre().equals(b1.nombre ) && libreria_inventario[i].getMarca().equals(b1.marca) && libreria_inventario[i].getModelo().equals(b1.modelo) && libreria_inventario[i].getPrecio()==b1.precio) {
                                 int existencia_original= libreria_inventario[i].getExistencia();
                                 //sumamdo la nueva existencia
                                 existencia_original= existencia_original+b1.existencia;
