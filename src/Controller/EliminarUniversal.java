@@ -42,7 +42,7 @@ public class EliminarUniversal implements ActionListener{
         
         //si se desea eliminar un usuario
         if (libreria_usuarios==lista) {
-            for (int i = 0; i < lista.length; i++) {
+            for (int i = 0; i < numero; i++) {
                 view.ListaEliminar.addItem(libreria_usuarios[i].getCui()+"  -  "+ libreria_usuarios[i].getNombre());
             }
             LibreriaUsuarios=true;
@@ -74,6 +74,8 @@ public class EliminarUniversal implements ActionListener{
         }
         
     }
+    
+    
     public void actionPerformed(ActionEvent e){
         //capturando los datos necesarios para eliminiar un dato
         int index = view.ListaEliminar.getSelectedIndex();

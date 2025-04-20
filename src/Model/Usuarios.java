@@ -107,21 +107,25 @@ public class Usuarios {
                         
                         //creando el objeto con las caracteristicas de un clinte
                         Usuarios p1 = new Usuarios();
+                        //registrando los datos de la lista temporal
+                        p1.cui=Long.parseLong(listatemporal[0]);
+                        p1.nombre=listatemporal[1];
+                        p1.nombre_usuario=listatemporal[2];
+                        p1.password=listatemporal[3];
+                        if (listatemporal[4].equals("oro")){
+                            p1.cliente_oro=true;
+                        }
+                        p1.vehiculos=listatemporal[5].split(";");
                         
-                        
-                        
+                        //verificando si no existe el usuario
+                        for (int i = 0; i < ContadorUsuarios(); i++) {
+                            if (libreria_usuarios[i].getCui()==p1.cui && libreria_usuarios[i].getNombre().equals(p1.getNombre())) {
+                                usuarioRepetido=true;
+                                break;
+                            }
+                        }
                         //si no existen usuarios repetidos, se guardan
                         if (!usuarioRepetido) {
-                            //registrando los datos de la lista temporal
-                            p1.cui=Long.parseLong(listatemporal[0]);
-                            p1.nombre=listatemporal[1];
-                            p1.nombre_usuario=listatemporal[2];
-                            p1.password=listatemporal[3];
-                            if (listatemporal[4].equals("oro")){
-                                p1.cliente_oro=true;
-                            }
-                            p1.vehiculos=listatemporal[5].split(";");
-
                             //guardando al cliente en la libreria global
                             libreria_usuarios[ContadorUsuarios()] = p1;
                         }
