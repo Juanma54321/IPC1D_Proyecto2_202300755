@@ -124,7 +124,7 @@ public class Inventario {
                         
                         //si el repuesto no existe
                         if (repuesto_existente) {
-                            b1.ID="IPC1D"+contador_dinamico;
+                            b1.ID=String.valueOf(b1.nombre.length())+b1.modelo.charAt(0)+String.valueOf(b1.marca.length());
 
                             //guardando el repuesto en la libreria global
                             libreria_inventario[ContadorRepuestos()]=b1;

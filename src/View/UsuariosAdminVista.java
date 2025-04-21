@@ -34,7 +34,6 @@ public class UsuariosAdminVista extends javax.swing.JFrame {
         TablaVehiculos = new javax.swing.JTable();
         ListaClientes = new javax.swing.JComboBox<>();
         BtnBuscar = new javax.swing.JButton();
-        BtnAñadir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -57,7 +56,7 @@ public class UsuariosAdminVista extends javax.swing.JFrame {
         BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
         BtnEliminar.setText("Eliminar");
         BtnEliminar.setBorder(null);
-        jPanel1.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 120, 40));
+        jPanel1.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 120, 40));
 
         btnEditar.setBackground(new java.awt.Color(0, 51, 255));
         btnEditar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
@@ -65,7 +64,7 @@ public class UsuariosAdminVista extends javax.swing.JFrame {
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.setBorder(null);
-        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 120, 40));
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 120, 40));
 
         TablaClientes.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         TablaClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -106,14 +105,6 @@ public class UsuariosAdminVista extends javax.swing.JFrame {
         BtnBuscar.setActionCommand("Buscar");
         BtnBuscar.setBorder(null);
         jPanel1.add(BtnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 90, 60));
-
-        BtnAñadir.setBackground(new java.awt.Color(0, 51, 255));
-        BtnAñadir.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        BtnAñadir.setForeground(new java.awt.Color(255, 255, 255));
-        BtnAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/añadir.png"))); // NOI18N
-        BtnAñadir.setText("Añadir");
-        BtnAñadir.setBorder(null);
-        jPanel1.add(BtnAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,7 +160,6 @@ public class UsuariosAdminVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton BtnAñadir;
     public javax.swing.JButton BtnBuscar;
     public javax.swing.JButton BtnCargarClientes;
     public javax.swing.JButton BtnEliminar;
