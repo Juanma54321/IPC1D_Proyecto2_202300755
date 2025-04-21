@@ -25,19 +25,71 @@ public class ServiciosVista extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        BtnCargarServicios = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaServicios = new javax.swing.JTable();
+        btnAñadir = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnCargarServicios.setBackground(new java.awt.Color(0, 51, 255));
+        BtnCargarServicios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        BtnCargarServicios.setForeground(new java.awt.Color(255, 255, 255));
+        BtnCargarServicios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Repuesto.png"))); // NOI18N
+        BtnCargarServicios.setText("<html><center>Cargar Servicios</center></html>");
+        BtnCargarServicios.setActionCommand("Cargar");
+        BtnCargarServicios.setBorder(null);
+        jPanel1.add(BtnCargarServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 120, 40));
+
+        BtnEliminar.setBackground(new java.awt.Color(0, 51, 255));
+        BtnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        BtnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
+        BtnEliminar.setText("Eliminar");
+        BtnEliminar.setBorder(null);
+        jPanel1.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 120, 40));
+
+        btnEditar.setBackground(new java.awt.Color(0, 51, 255));
+        btnEditar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
+        btnEditar.setText("Editar");
+        btnEditar.setBorder(null);
+        jPanel1.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 120, 40));
+
+        tablaServicios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        tablaServicios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Servicio", "Marca", "Modelo", "Repuestos", "Mano de obra", "Precio Total"
+            }
+        ));
+        tablaServicios.setGridColor(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(tablaServicios);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 530, 230));
+
+        btnAñadir.setBackground(new java.awt.Color(0, 51, 255));
+        btnAñadir.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        btnAñadir.setForeground(new java.awt.Color(255, 255, 255));
+        btnAñadir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/añadir.png"))); // NOI18N
+        btnAñadir.setText("Añadir");
+        btnAñadir.setBorder(null);
+        jPanel1.add(btnAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,6 +137,12 @@ public class ServiciosVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton BtnCargarServicios;
+    public javax.swing.JButton BtnEliminar;
+    public javax.swing.JButton btnAñadir;
+    public javax.swing.JButton btnEditar;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTable tablaServicios;
     // End of variables declaration//GEN-END:variables
 }

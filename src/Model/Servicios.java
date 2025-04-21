@@ -85,12 +85,12 @@ public class Servicios{
                     
                     //leyendo cada linea del archivo
                     while((listaConcatenada=lector.readLine())!=null){
-                        
+                      
                         //desconcatenando el servicio
                         listatemporal= listaConcatenada.split("-");
                         
                         //desconcatenando la lista de repuestos
-                        String [] listaRepuestostemporal =listatemporal[3].split(";");
+                        String[] listaRepuestostemporal =listatemporal[3].split(";");
                         
                         //creando un objeto con caracteristicas de un servicio
                         Servicios s1 = new Servicios();
@@ -99,11 +99,11 @@ public class Servicios{
                         s1.setMarca(listatemporal[1]);
                         s1.modelo=listatemporal[2];
                         s1.lista_repuestos=listatemporal[3];
-                        s1.precio_mano_obra=Long.parseLong(listatemporal[4]);
+                        s1.precio_mano_obra=Float.parseFloat(listatemporal[4]);
                         s1.ID= String.valueOf(listaRepuestostemporal.length)+"-"+String.valueOf(s1.modelo.length())+s1.marca.charAt(1);
                         
                         if (listatemporal.length!=5) {
-                             //verificando si los repuestos son validos
+                            //verificando si los repuestos son validos
                             for (int i = 0; i < libreria_inventario.length; i++) {
                                 if (libreria_inventario[i]!=null) {
                                     for (int j = 0; j < listaRepuestostemporal.length; j++) {
@@ -158,4 +158,5 @@ public class Servicios{
         }
         return numero;
     }
+    
 }

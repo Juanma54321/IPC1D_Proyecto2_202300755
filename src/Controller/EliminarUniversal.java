@@ -2,6 +2,7 @@
 package Controller;
 
 import static Model.Inventario.libreria_inventario;
+import static Model.Servicios.libreria_servicios;
 import static Model.Usuarios.libreria_usuarios;
 
 import View.EliminarVista;
@@ -13,6 +14,7 @@ public class EliminarUniversal implements ActionListener{
     private EliminarVista view;
     private boolean LibreriaRepuestos=false;
     private boolean LibreriaUsuarios=false;
+    private boolean LibreriaServicios=false;
 
     public EliminarUniversal(EliminarVista view) {
         this.view = view;
@@ -47,6 +49,14 @@ public class EliminarUniversal implements ActionListener{
             }
             LibreriaUsuarios=true;
         }
+        
+        //si se desea eliminar un servicio
+        if (libreria_servicios==lista) {
+            for (int i = 0; i < numero; i++) {
+                view.ListaEliminar.addItem(libreria_servicios[i].getID()+" - "+libreria_servicios[i].getNombre_servicio());
+            }
+            LibreriaServicios=true;
+        }
     
     }
     
@@ -70,6 +80,16 @@ public class EliminarUniversal implements ActionListener{
             //corriendo los datos despues del elemento eliminado
             for (int i = 0; i < (numero-posicion); i++) {
                 libreria_usuarios[posicion+i]=libreria_usuarios[posicion+i+1];
+            }
+        }
+        
+        //si lo que esta dentro del combo box son los servicios
+        if (LibreriaServicios) {
+            //eliminando el servicios seleccionado
+            libreria_servicios[posicion]=null;
+            //corriendo los datos despues del elemento eliminado
+            for (int i = 0; i < (numero-posicion); i++) {
+                libreria_servicios[posicion+i]=libreria_servicios[posicion+i+1];
             }
         }
         
