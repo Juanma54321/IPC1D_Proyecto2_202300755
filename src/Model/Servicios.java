@@ -69,10 +69,7 @@ public class Servicios{
     
     //metodo para ingresar servicios en el sistema
     public void RegistroServicio(String ruta){
-        //variables de control
-        boolean servicioRepetido=false;
-        boolean repuestosValido=true;
-        int servicioNoValido=0;
+        
         
         //verificando la exencion del archivo
         if (ruta.contains(".tms")) {
@@ -83,9 +80,19 @@ public class Servicios{
                     String[] listatemporal;
                     String listaConcatenada;
                     
+                    //variables de control
+                    boolean servicioRepetido=false;
+                    int repuestosValido=0;
+                    int servicioNoValido=0;
+                    
                     //leyendo cada linea del archivo
                     while((listaConcatenada=lector.readLine())!=null){
                       
+                        //restableciendo las variables de control variables de control
+                        servicioRepetido=false;
+                        repuestosValido=0;
+                        servicioNoValido=0;
+                        
                         //desconcatenando el servicio
                         listatemporal= listaConcatenada.split("-");
                         
@@ -102,15 +109,16 @@ public class Servicios{
                         s1.precio_mano_obra=Float.parseFloat(listatemporal[4]);
                         s1.ID= String.valueOf(listaRepuestostemporal.length)+"-"+String.valueOf(s1.modelo.length())+s1.marca.charAt(1);
                         
-                        if (listatemporal.length!=5) {
+                                                
+                        if (listatemporal.length==5) {
                             //verificando si los repuestos son validos
                             for (int i = 0; i < libreria_inventario.length; i++) {
                                 if (libreria_inventario[i]!=null) {
                                     for (int j = 0; j < listaRepuestostemporal.length; j++) {
                                         if (libreria_inventario[i].getID().equals(listaRepuestostemporal[j])) {
                                             //comparando la marca y modelo del repuesto con el del servicio
-                                            if(!libreria_inventario[i].getMarca().equals(listatemporal[1]) && !libreria_inventario[i].getModelo().equals(listatemporal[2])){
-                                                repuestosValido=false;
+                                            if((libreria_inventario[i].getMarca().equalsIgnoreCase(s1.getMarca()) && libreria_inventario[i].getModelo().equalsIgnoreCase(s1.getModelo())) || libreria_inventario[i].getModelo().equalsIgnoreCase("cualquiera")){
+                                                repuestosValido++;
                                             }
                                         }
                                     }
@@ -126,9 +134,10 @@ public class Servicios{
                         }
                         
                         //verificando si es valido el servicio
-                        if (!repuestosValido) {
+                        if (repuestosValido!=listaRepuestostemporal.length) {
                             servicioNoValido++;
-                        }else if(repuestosValido && !servicioRepetido){
+                        }
+                        if(repuestosValido==listaRepuestostemporal.length && !servicioRepetido){
                             //registrando el servicio
                             libreria_servicios[ContadorServicios()]=s1;
                         }

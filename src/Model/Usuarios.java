@@ -5,9 +5,12 @@ import View.UsuariosAdminVista;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
-public class Usuarios {
+public class Usuarios implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private long cui;
     private String nombre;
     private String nombre_usuario;
@@ -179,5 +182,18 @@ public class Usuarios {
             }
         }
         return condicion;
+    }
+    
+    //metodo para saber que usuario inicio sesion
+    public Usuarios BuscadorDeUsuarios(String user, String pass){
+        for (int i = 0; i < libreria_usuarios.length; i++) {
+            if (libreria_usuarios[i]!=null) {
+                if (libreria_usuarios[i].getNombre_usuario().equals(user) && libreria_usuarios[i].getPassword().equals(pass)) {
+                    return libreria_usuarios[i];
+                }
+            }
+        }
+        
+        return libreria_usuarios[50];
     }
 }

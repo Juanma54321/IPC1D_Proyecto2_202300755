@@ -58,18 +58,18 @@ public class RepuestosVista extends javax.swing.JFrame {
         TablaRepuestos.setGridColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(TablaRepuestos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 380, 170));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 480, 240));
 
         BtnCargar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         BtnCargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Repuesto.png"))); // NOI18N
         BtnCargar.setText("<html><center>Cargar Repeuestos</center></html>");
         BtnCargar.setActionCommand("Cargar");
-        jPanel1.add(BtnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 130, 40));
+        jPanel1.add(BtnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 130, 40));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("*para modificar, cambia los datos de la tabla");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
 
         BtnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
@@ -80,7 +80,7 @@ public class RepuestosVista extends javax.swing.JFrame {
                 BtnEliminarActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 240, 120, 40));
+        jPanel1.add(BtnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 120, 40));
 
         BtnGuardar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         BtnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
@@ -91,17 +91,21 @@ public class RepuestosVista extends javax.swing.JFrame {
                 BtnGuardarActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, 120, 40));
+        jPanel1.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 120, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

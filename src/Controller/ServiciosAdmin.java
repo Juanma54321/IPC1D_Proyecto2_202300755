@@ -4,6 +4,7 @@ package Controller;
 import static Model.Inventario.libreria_inventario;
 import Model.Servicios;
 import static Model.Servicios.libreria_servicios;
+import View.EditarServicioVista;
 import View.EliminarVista;
 import View.ServiciosVista;
 import java.awt.event.ActionEvent;
@@ -22,6 +23,7 @@ public class ServiciosAdmin implements ActionListener{
         this.view = view;
         this.view.BtnCargarServicios.addActionListener(this);
         this.view.BtnEliminar.addActionListener(this);
+        this.view.btnEditar.addActionListener(this);
     }
     
     //metodo para iniciar la vista
@@ -103,7 +105,7 @@ public class ServiciosAdmin implements ActionListener{
                 RefreshTabla();
                 JOptionPane.showMessageDialog(view,"Servicios cargados correctamente","INFO",JOptionPane.INFORMATION_MESSAGE);
                 break;
-        
+            //accion del boton eliminar
             case("Eliminar"):
                 
                 if (model.ContadorServicios()>0) {
@@ -118,6 +120,15 @@ public class ServiciosAdmin implements ActionListener{
                     JOptionPane.showMessageDialog(view,"No existen servicios para borrar","ERROR",JOptionPane.ERROR_MESSAGE);
                 }
                 break;
+                
+            //accion del boton editar    
+            case("Editar"):
+                EditarServicioVista view2= new EditarServicioVista();
+                EditarServicios controller = new EditarServicios(model,view2);
+                
+                controller.IniciarVista();
+                break;
+            
         }
     }
 }

@@ -5,9 +5,12 @@ import View.RepuestosVista;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
-public class Inventario {
+public class Inventario implements Serializable {
+    private static final long serialVersionUID = 2L;
+    
     private String ID;
     private String nombre;
     private String marca;
