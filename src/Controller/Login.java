@@ -30,6 +30,8 @@ public class Login implements ActionListener{
         this.model = model;
         this.view = view;
         this.view.btnLogin.addActionListener(this);
+        
+
         // Agregar el listener para detectar cuando se presiona la X
         this.view.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // Previene cierre automático
         //accion que se realizara antes de cerrar el programa
@@ -47,8 +49,6 @@ public class Login implements ActionListener{
         view.setVisible(true);
         view.setLocationRelativeTo(null);
         view.setTitle("LOGIN");
-        
-        Deserializador();
     }
     
     //metodo para serializar
@@ -66,7 +66,7 @@ public class Login implements ActionListener{
     }
     
     //metodo para deserializar
-    private void Deserializador(){
+    public void Deserializador(){
         try{
             FileInputStream archivoD = new FileInputStream ("usuarios.tms");
             ObjectInputStream entrada = new ObjectInputStream(archivoD);
@@ -77,7 +77,7 @@ public class Login implements ActionListener{
 
             System.out.println("Objetos deserializados");
         }catch (IOException|ClassNotFoundException e){
-            System.out.println("hola");
+            System.out.println("Error al deserailizar");
         }
     
     }
@@ -98,6 +98,7 @@ public class Login implements ActionListener{
             controller.IniciarVista();
         //si es un cliente
         }else if (contador==2) {
+            
             UserVista view2= new UserVista();
             Usuarios p1= model.BuscadorDeUsuarios(user, pass);
             

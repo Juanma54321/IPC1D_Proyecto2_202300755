@@ -153,6 +153,9 @@ public class EditarClientes implements ActionListener{
                     GuardarCambios(p1,index,x);
                     JOptionPane.showMessageDialog(view,"Cambios realizados","INFO",JOptionPane.INFORMATION_MESSAGE);
                     view.dispose();
+                    
+                    //ordenando los usuarios
+                    model.Ordenamiento(libreria_usuarios);
 
                     //regresando a la vista anterior
                     UsuariosAdminVista view2 = new UsuariosAdminVista();

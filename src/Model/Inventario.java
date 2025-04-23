@@ -20,9 +20,6 @@ public class Inventario implements Serializable {
     
     //libreria donde se llevara el inventario
     public static Inventario [] libreria_inventario= new Inventario[100];
-     
-    private static int contador_dinamico=0;
-
     public String getID() {
         return ID;
     }
@@ -72,9 +69,11 @@ public class Inventario implements Serializable {
     }
     
     
-    
-    
-    //metodo para poder registrar usuarios en el sistema
+    /**
+     * Método para registrar repuestos desde un archivo .tmr
+     * @param ruta Ruta del archivo a cargar
+     * @param view Vista para mostrar mensajes
+     */
     public void RegistroRepuestos(String ruta, RepuestosVista view){
         
         //verificando la extencion del archivo
@@ -131,7 +130,6 @@ public class Inventario implements Serializable {
 
                             //guardando el repuesto en la libreria global
                             libreria_inventario[ContadorRepuestos()]=b1;
-                            this.contador_dinamico++;
                         }
                     }
                 }
@@ -148,10 +146,12 @@ public class Inventario implements Serializable {
             //mensaje de error
             JOptionPane.showMessageDialog(view,"Archivo no valido","ERROR", JOptionPane.ERROR_MESSAGE);
         }
-    }    
+    }
     
-    
-    //metodo para contar cuantos repuestos existen
+    /**
+     * Retorna la cantidad de repuestos almacenados
+     * @return cantidad de elementos en libreria_inventario (hasta 50)
+     */
     public int ContadorRepuestos(){
         int numero=0;
         for (int i = 0; i < 50; i++) {

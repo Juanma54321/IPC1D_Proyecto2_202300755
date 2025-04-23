@@ -133,6 +133,8 @@ public class Usuarios implements Serializable {
                             libreria_usuarios[ContadorUsuarios()] = p1;
                         }
                     }
+                    //ordedando los usuarios por el DPI
+                    Ordenamiento(libreria_usuarios);
                     
                 }
                 catch(IOException f){
@@ -158,7 +160,6 @@ public class Usuarios implements Serializable {
                 numero++;
             }
         }
-    
         return numero;
     }
     
@@ -195,5 +196,62 @@ public class Usuarios implements Serializable {
         }
         
         return libreria_usuarios[50];
+    }
+    
+    //metodo para ordenar por DPI
+    public void Ordenamiento(Usuarios[] lista_a_Ordenar){
+        int n = ContadorUsuarios();
+        boolean intercambiado;
+        System.out.println("hola");
+        
+        for (int i = 0; i < n-1; i++) {
+            intercambiado=false;
+            
+            for (int j = 0; j < n - 1 - i; j++) {
+                if (lista_a_Ordenar[j].getCui() > lista_a_Ordenar[j + 1].getCui()) { // Si el actual es mayor que el siguiente, intercambiar
+                    Usuarios temp = lista_a_Ordenar[j];
+                    lista_a_Ordenar[j]=lista_a_Ordenar[j+1];
+                    lista_a_Ordenar[j + 1]=temp;
+                    intercambiado = true;
+                    
+                    
+                }
+            }
+            //Si no hubo intercambios, la lista ya está ordenada y terminamos
+            if (!intercambiado) break;
+        }
+    
+    
+    }
+    
+    
+    /**
+     * metodo para poder agregar vehiculos a un cliente
+     * @param p1 Cliente a agregar vehiculo
+     * @param textoConcatendado las caracteristicas del vehiculo separados por ","
+     */
+    public void AgregarVehiculo(Usuarios p1, String textoConcatendado){
+        //concatenamos todos los vehiculos anteriores
+        String carros = String.join(";", p1.getVehiculos());
+        
+        carros=carros+";"+textoConcatendado;
+        
+        p1.setVehiculos(carros.split(";"));
+        //guardando el usuario
+        libreria_usuarios[PosicionCliente(p1)]=p1;
+    }
+    
+    /**
+     * metodo para optener la posicion del cliente en la lista
+     * @param p1 cliente a buscar
+     */
+    public int PosicionCliente(Usuarios p1){
+        for (int i = 0; i < libreria_usuarios.length; i++) {
+            if (libreria_usuarios[i]==p1) {
+                return i;
+            }
+        }
+    
+        return -1;
     }
 }

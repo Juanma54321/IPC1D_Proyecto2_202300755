@@ -16,6 +16,7 @@ public class Proyecto2 {
         Login controller= new Login(model,view);
         
         controller.IniciarVista();
+        controller.Deserializador();
     }
     
 }
