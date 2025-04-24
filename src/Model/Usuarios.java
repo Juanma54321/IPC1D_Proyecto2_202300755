@@ -22,7 +22,7 @@ public class Usuarios implements Serializable {
     public static Usuarios [] libreria_usuarios =new Usuarios[50];
     
     //contador didamico para poder ingresar usuarios
-    private static byte contador=0;
+    public static int contador=0;
 
     //usuario administrativo
     String usuariopriv= "Juanma321";
@@ -131,6 +131,7 @@ public class Usuarios implements Serializable {
                         if (!usuarioRepetido) {
                             //guardando al cliente en la libreria global
                             libreria_usuarios[ContadorUsuarios()] = p1;
+                            contador++;
                         }
                     }
                     //ordedando los usuarios por el DPI
@@ -154,13 +155,14 @@ public class Usuarios implements Serializable {
     
     //metodo para contar cuantos usuarios existen
     public int ContadorUsuarios(){
-        int numero=0;
-        for (int i = 0; i < 50; i++) {
+        int contador=0;
+        for (int i = 0; i < libreria_usuarios.length; i++) {
             if (libreria_usuarios[i]!=null) {
-                numero++;
+                contador++;
             }
         }
-        return numero;
+        
+        return contador;
     }
     
     //metodo para verificar los datos de login
@@ -231,14 +233,27 @@ public class Usuarios implements Serializable {
      * @param textoConcatendado las caracteristicas del vehiculo separados por ","
      */
     public void AgregarVehiculo(Usuarios p1, String textoConcatendado){
-        //concatenamos todos los vehiculos anteriores
-        String carros = String.join(";", p1.getVehiculos());
         
-        carros=carros+";"+textoConcatendado;
+        //si el usuario ya posee vehiculos registrados
+        if (p1.getVehiculos()!=null) {
+            //concatenamos todos los vehiculos anteriores
+            String carros = String.join(";", p1.getVehiculos());
+
+            carros=carros+";"+textoConcatendado;
+
+            p1.setVehiculos(carros.split(";"));
+            //guardando el usuario
+            libreria_usuarios[PosicionCliente(p1)]=p1;
+        //si el cliente no tiene vehiculos registrados
+        }else{
+            String[] listaNueva = new String[1];
+            listaNueva[0]=textoConcatendado;
+            p1.setVehiculos(listaNueva);
+            //guardando el usuario
+            libreria_usuarios[PosicionCliente(p1)]=p1;
+            
+        }
         
-        p1.setVehiculos(carros.split(";"));
-        //guardando el usuario
-        libreria_usuarios[PosicionCliente(p1)]=p1;
     }
     
     /**
@@ -253,5 +268,20 @@ public class Usuarios implements Serializable {
         }
     
         return -1;
+    }
+    
+    //Metodo para verificar el CUi
+    public boolean VerficadorCUI(String cui){
+        //verificando que el cui sean solo nunmeros
+        if (cui.matches("\\d+")) {
+            //verificando si el cui no existe en la biblioteca
+            for (int i = 0; i < ContadorUsuarios(); i++) {
+                if (cui.equals(libreria_usuarios[i].getCui())) {
+                    return false;                
+                }
+            }
+            return true;
+        }
+        return false;
     }
 }

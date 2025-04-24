@@ -76,7 +76,7 @@ public class RegistroVista extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Placa");
+        jLabel2.setText("Modelo");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         txtModelo.setBackground(new java.awt.Color(0, 0, 0));
@@ -104,7 +104,7 @@ public class RegistroVista extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Modelo");
+        jLabel3.setText("Marca");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
 
         txtMarca.setBackground(new java.awt.Color(0, 0, 0));

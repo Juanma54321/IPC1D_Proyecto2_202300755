@@ -6,6 +6,7 @@ import static Model.Inventario.libreria_inventario;
 import Model.Usuarios;
 import static Model.Usuarios.libreria_usuarios;
 import View.AdminVista;
+import View.ClienteNuevoVista;
 import View.LoginVista;
 import View.UserVista;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,7 @@ public class Login implements ActionListener{
         this.model = model;
         this.view = view;
         this.view.btnLogin.addActionListener(this);
+        this.view.btnRegistrar.addActionListener(this);
         
 
         // Agregar el listener para detectar cuando se presiona la X
@@ -82,37 +84,56 @@ public class Login implements ActionListener{
     
     }
     
+    //acciones que realizaran los botones
     public void actionPerformed(ActionEvent e){
-        String user = view.txtUsuario.getText();
-        String pass = view.txtContrasena.getText();
+        String opcion = e.getActionCommand();
         
-        byte contador=model.ConfirmarInformacion(user, pass);
+        switch(opcion){
+            //accion del boton login
+            case("Login"):
+                String user = view.txtUsuario.getText();
+                String pass = view.txtContrasena.getText();
+
+                byte contador=model.ConfirmarInformacion(user, pass);
+
+                //si es un admin
+                if (contador==1) {
+                    AdminVista view1 = new AdminVista();
+
+                    Admin controller = new Admin(view1);
+
+                    view.dispose();
+                    controller.IniciarVista();
+                //si es un cliente
+                }else if (contador==2) {
+
+                    UserVista view2= new UserVista();
+                    Usuarios p1= model.BuscadorDeUsuarios(user, pass);
+
+                    User controller1 = new User(p1,view2);
+
+                    controller1.IniciarVista();
+
+                    view.dispose();
+
+                }
+                else{
+                    JOptionPane.showMessageDialog(view, "Usuario o contraseña incorrectas", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    view.txtUsuario.setText("Ingrese su usuario");
+                    view.txtContrasena.setText("**********");
+                }
+                break;
+                
+            case("Registrarse"):
+                Usuarios model1 = new Usuarios();
+                ClienteNuevoVista view1 = new ClienteNuevoVista();
+                
+                RegistroUsuario controller1 = new RegistroUsuario(model1,view1);
+                controller1.IniciarVista();
+                
+                
+                break;
         
-        //si es un admin
-        if (contador==1) {
-            AdminVista view1 = new AdminVista();
-            
-            Admin controller = new Admin(view1);
-            
-            view.dispose();
-            controller.IniciarVista();
-        //si es un cliente
-        }else if (contador==2) {
-            
-            UserVista view2= new UserVista();
-            Usuarios p1= model.BuscadorDeUsuarios(user, pass);
-            
-            User controller1 = new User(p1,view2);
-            
-            controller1.IniciarVista();
-            
-            view.dispose();
-            
-        }
-        else{
-            JOptionPane.showMessageDialog(view, "Usuario o contraseña incorrectas", "ERROR", JOptionPane.ERROR_MESSAGE);
-            view.txtUsuario.setText("Ingrese su usuario");
-            view.txtContrasena.setText("**********");
         }
         
         
