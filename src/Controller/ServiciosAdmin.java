@@ -104,6 +104,7 @@ public class ServiciosAdmin implements ActionListener{
                 model.RegistroServicio(ObtenerRuta());
                 RefreshTabla();
                 JOptionPane.showMessageDialog(view,"Servicios cargados correctamente","INFO",JOptionPane.INFORMATION_MESSAGE);
+                System.out.println(model.ContadorServicios());
                 break;
             //accion del boton eliminar
             case("Eliminar"):
@@ -125,6 +126,7 @@ public class ServiciosAdmin implements ActionListener{
             case("Editar"):
                 EditarServicioVista view2= new EditarServicioVista();
                 EditarServicios controller = new EditarServicios(model,view2);
+                view.dispose();
                 
                 controller.IniciarVista();
                 break;

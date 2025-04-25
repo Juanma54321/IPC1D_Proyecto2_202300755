@@ -31,7 +31,7 @@ public class EditarServicioVista extends javax.swing.JFrame {
         txtMarca = new javax.swing.JTextField();
         txtModelo = new javax.swing.JTextField();
         listaRepuestos = new javax.swing.JComboBox<>();
-        btnSeleccionarRepuesto = new javax.swing.JButton();
+        btnAñadorRepuesto = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -43,6 +43,10 @@ public class EditarServicioVista extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaRepuestos = new javax.swing.JTable();
         btnBuscarRepuestos = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtPrecio = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -78,14 +82,15 @@ public class EditarServicioVista extends javax.swing.JFrame {
         jPanel1.add(txtModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, 91, -1));
 
         listaRepuestos.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        jPanel1.add(listaRepuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 210, -1));
+        jPanel1.add(listaRepuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 210, -1));
 
-        btnSeleccionarRepuesto.setBackground(new java.awt.Color(0, 51, 255));
-        btnSeleccionarRepuesto.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
-        btnSeleccionarRepuesto.setForeground(new java.awt.Color(255, 255, 255));
-        btnSeleccionarRepuesto.setText("Añadir");
-        btnSeleccionarRepuesto.setBorder(null);
-        jPanel1.add(btnSeleccionarRepuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 91, 29));
+        btnAñadorRepuesto.setBackground(new java.awt.Color(0, 51, 255));
+        btnAñadorRepuesto.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        btnAñadorRepuesto.setForeground(new java.awt.Color(255, 255, 255));
+        btnAñadorRepuesto.setText("Añadir");
+        btnAñadorRepuesto.setBorder(null);
+        btnAñadorRepuesto.setEnabled(false);
+        jPanel1.add(btnAñadorRepuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 91, 29));
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,12 +110,12 @@ public class EditarServicioVista extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Repuestos");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Repuesto");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
         btnGuardar.setBackground(new java.awt.Color(204, 51, 255));
         btnGuardar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
@@ -118,18 +123,20 @@ public class EditarServicioVista extends javax.swing.JFrame {
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Cambios.png"))); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.setBorder(null);
+        btnGuardar.setEnabled(false);
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 350, 100, 40));
 
         txtRepuesto.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtRepuesto.setText("Eliminar");
-        jPanel1.add(txtRepuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 91, -1));
+        jPanel1.add(txtRepuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 91, -1));
 
         btnEliminar.setBackground(new java.awt.Color(204, 0, 0));
         btnEliminar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminar.setText("Eliminar");
         btnEliminar.setBorder(null);
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 90, 25));
+        btnEliminar.setEnabled(false);
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 90, 25));
 
         tablaRepuestos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -149,7 +156,41 @@ public class EditarServicioVista extends javax.swing.JFrame {
         btnBuscarRepuestos.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscarRepuestos.setText("Buscar");
         btnBuscarRepuestos.setBorder(null);
-        jPanel1.add(btnBuscarRepuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 91, 29));
+        btnBuscarRepuestos.setEnabled(false);
+        btnBuscarRepuestos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarRepuestosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscarRepuestos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 91, 29));
+
+        txtID.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        txtID.setText("XXXX");
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 70, -1));
+
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("ID");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        txtPrecio.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        txtPrecio.setText("XXXX");
+        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 90, -1));
+
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Mano de obra");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,6 +209,18 @@ public class EditarServicioVista extends javax.swing.JFrame {
     private void txtMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMarcaActionPerformed
+
+    private void btnBuscarRepuestosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRepuestosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarRepuestosActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,23 +258,27 @@ public class EditarServicioVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnAñadorRepuesto;
     public javax.swing.JButton btnBuscarRepuestos;
     public javax.swing.JButton btnEliminar;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnSeleccionar;
-    public javax.swing.JButton btnSeleccionarRepuesto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JComboBox<String> listaRepuestos;
     public javax.swing.JComboBox<String> listaServicios;
     public javax.swing.JTable tablaRepuestos;
+    public javax.swing.JTextField txtID;
     public javax.swing.JTextField txtMarca;
     public javax.swing.JTextField txtModelo;
+    public javax.swing.JTextField txtPrecio;
     public javax.swing.JTextField txtRepuesto;
     public javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables

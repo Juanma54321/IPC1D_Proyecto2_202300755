@@ -3,6 +3,8 @@ package Controller;
 
 import Model.Inventario;
 import static Model.Inventario.libreria_inventario;
+import Model.Servicios;
+import static Model.Servicios.libreria_servicios;
 import Model.Usuarios;
 import static Model.Usuarios.libreria_usuarios;
 import View.AdminVista;
@@ -61,6 +63,7 @@ public class Login implements ActionListener{
                 //objetos a serailizar 
                 salida.writeObject(libreria_usuarios);
                 salida.writeObject(libreria_inventario);
+                salida.writeObject(libreria_servicios);
                 System.out.println("Objeto serializado Correctamente");
             }catch (IOException l){
                 System.out.println("el error es: "+ l.toString());
@@ -75,6 +78,7 @@ public class Login implements ActionListener{
             //deserializadon los objetos
             libreria_usuarios = (Usuarios[]) entrada.readObject();
             libreria_inventario=(Inventario[]) entrada.readObject();
+            libreria_servicios=(Servicios[]) entrada.readObject();
             entrada.close();
 
             System.out.println("Objetos deserializados");

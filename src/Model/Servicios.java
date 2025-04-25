@@ -2,13 +2,14 @@
 package Model;
 
 import static Model.Inventario.libreria_inventario;
-import View.ServiciosVista;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import javax.swing.JOptionPane;
 
-public class Servicios{
+public class Servicios implements Serializable{
     private String ID;
     private String nombre_servicio;
     private String marca;
@@ -91,7 +92,7 @@ public class Servicios{
                         //restableciendo las variables de control variables de control
                         servicioRepetido=false;
                         repuestosValido=0;
-                        servicioNoValido=0;
+                        
                         
                         //desconcatenando el servicio
                         listatemporal= listaConcatenada.split("-");
@@ -107,7 +108,7 @@ public class Servicios{
                         s1.modelo=listatemporal[2];
                         s1.lista_repuestos=listatemporal[3];
                         s1.precio_mano_obra=Float.parseFloat(listatemporal[4]);
-                        s1.ID= String.valueOf(listaRepuestostemporal.length)+"-"+String.valueOf(s1.modelo.length())+s1.marca.charAt(1);
+                        s1.ID= String.valueOf(listaRepuestostemporal.length)+String.valueOf(ContadorServicios())+"-"+String.valueOf(s1.modelo.length())+s1.marca.charAt(1);
                         
                                                 
                         if (listatemporal.length==5) {
@@ -126,12 +127,17 @@ public class Servicios{
                             }
                         }
                         
+                        if (listaRepuestostemporal.length!=0 && listaRepuestostemporal[0].equals("")) {
+                            repuestosValido++;
+                        }
+                        
                         //verificando si el servicios existe
                         for (int i = 0; i < ContadorServicios(); i++) {
                             if (libreria_servicios[i].getID().equals(s1.ID)) {
                                 servicioRepetido=true;
+                                servicioNoValido++;
                             }
-                        }
+                        }   
                         
                         //verificando si es valido el servicio
                         if (repuestosValido!=listaRepuestostemporal.length) {
