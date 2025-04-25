@@ -36,6 +36,7 @@ public class RegistroUsuario implements ActionListener{
                 p1.setCui(Long.parseLong(view.txtCUI.getText()));
                 p1.setPassword(view.txtContraseña.getText());
                 p1.setCliente_oro(false);
+                p1.setVehiculos(null);
                 
                 libreria_usuarios[p1.ContadorUsuarios()]=p1;
                 JOptionPane.showMessageDialog(view,"Usuario registrado con exito", "INFO", JOptionPane.INFORMATION_MESSAGE);

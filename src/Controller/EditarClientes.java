@@ -47,11 +47,15 @@ public class EditarClientes implements ActionListener{
         view.listaVehiculos.removeAllItems();
         //obteniendo la lista de carros
         String[] listaConcatenada = p1.getVehiculos();
-        //copiando cada elemento y agregandolo al combo box
-        for (int i = 0; i < listaConcatenada.length; i++) {
-            String[] CarroUnico = listaConcatenada[i].split(",");
-            view.listaVehiculos.addItem(CarroUnico[0]+" - "+CarroUnico[1]);
+        if (listaConcatenada!=null) {
+            //copiando cada elemento y agregandolo al combo box
+            for (int i = 0; i < listaConcatenada.length; i++) {
+                String[] CarroUnico = listaConcatenada[i].split(",");
+                view.listaVehiculos.addItem(CarroUnico[0]+" - "+CarroUnico[1]);
+            }
         }
+        
+        
         
     }
     
@@ -102,6 +106,10 @@ public class EditarClientes implements ActionListener{
         boolean condicion=false;
         if (!view.txtUsuario.getText().equals("") && view.txtCUI.getText().matches("\\d+") && !view.txtnombre.getText().equals("") && !view.txtPlaca.getText().equals("") && !view.txtMarca.getText().equals("") && !view.txtModelo.getText().equals("")) {
             condicion = true;
+        }
+        if (model.PlacaDuplicada(view.txtPlaca.getText())) {
+            condicion=false;
+            JOptionPane.showMessageDialog(null, "Placa Repetida");
         }
         
         

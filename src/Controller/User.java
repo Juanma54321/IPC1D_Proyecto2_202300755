@@ -5,8 +5,10 @@ import Model.Usuarios;
 import View.LoginVista;
 import View.RegistroVista;
 import View.UserVista;
+import View.VerVehiculosVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 
 public class User implements ActionListener{
@@ -18,6 +20,7 @@ public class User implements ActionListener{
         this.user = user;
         this.view.BtnCerrar.addActionListener(this);
         this.view.btnRegistrar.addActionListener(this);
+        this.view.btnVer.addActionListener(this);
         
     }
     
@@ -37,10 +40,10 @@ public class User implements ActionListener{
             //accion del boton cerrar
             case("Cerrar"):
                 view.dispose();
-                Usuarios model = new Usuarios();
-                LoginVista view = new LoginVista();
+                Usuarios model2 = new Usuarios();
+                LoginVista view2 = new LoginVista();
                 
-                Login controller = new Login(model,view);
+                Login controller = new Login(model2,view2);
                 controller.IniciarVista();
                 
                 break;
@@ -53,6 +56,18 @@ public class User implements ActionListener{
                 
                 controller1.IniciarVista();
                     
+                break;
+            //accion del boton ver mis vehiculos
+            case("Ver"):
+                if (user.getVehiculos()!=null) {
+                    VerVehiculosVista view3 = new VerVehiculosVista();
+                    VerVehiculo controller3 = new VerVehiculo(user,view3);
+                    
+                    controller3.IniciarVista();
+                    
+                }else{
+                    JOptionPane.showMessageDialog(view,"No existen vehiculos registrados","ERROR", JOptionPane.ERROR_MESSAGE);
+                }
                 break;
         }
     

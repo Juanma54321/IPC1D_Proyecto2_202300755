@@ -166,6 +166,8 @@ public class EditarServicioVista extends javax.swing.JFrame {
 
         txtID.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
         txtID.setText("XXXX");
+        txtID.setDisabledTextColor(new java.awt.Color(204, 0, 204));
+        txtID.setEnabled(false);
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);

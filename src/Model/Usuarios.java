@@ -204,7 +204,6 @@ public class Usuarios implements Serializable {
     public void Ordenamiento(Usuarios[] lista_a_Ordenar){
         int n = ContadorUsuarios();
         boolean intercambiado;
-        System.out.println("hola");
         
         for (int i = 0; i < n-1; i++) {
             intercambiado=false;
@@ -283,5 +282,35 @@ public class Usuarios implements Serializable {
             return true;
         }
         return false;
+    }
+    
+    //metodo para verificar placas repetidas
+    public boolean PlacaDuplicada(String placa){
+        boolean repetido=false;
+        String[] vehiculos;
+        String[] placas;
+        int contador=0;
+        
+        for (int i = 0; i < ContadorUsuarios(); i++) {
+            //copiamos la lista de carros con sus caracteristicas
+            vehiculos=libreria_usuarios[i].getVehiculos();
+            if (vehiculos!=null) {
+                contador=vehiculos.length;
+
+                for (int j = 0; j < contador; j++) {
+                    //separamos cada carro con sus caracteristicas
+                    placas=vehiculos[j].split(",");
+                    if (placas[0].equalsIgnoreCase(placa)) {
+                        repetido=true;
+                        break;
+                    }
+                }
+            
+                
+            }
+        }
+        
+        
+        return repetido;
     }
 }

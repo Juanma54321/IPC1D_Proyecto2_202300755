@@ -5,6 +5,7 @@ import Model.Inventario;
 import static Model.Inventario.libreria_inventario;
 import Model.Servicios;
 import Model.Usuarios;
+import static Model.Usuarios.libreria_usuarios;
 import View.AdminVista;
 import View.LoginVista;
 import View.RepuestosVista;
@@ -70,6 +71,7 @@ public class Admin implements ActionListener{
                 Usuarios model2 = new Usuarios();
                 UsuariosAdminVista view2 = new UsuariosAdminVista();
                 UsuariosAdmin controller2 = new UsuariosAdmin(view2,model2);
+                model2.Ordenamiento(libreria_usuarios);
                 controller2.IniciarVista();
                 
                 break;

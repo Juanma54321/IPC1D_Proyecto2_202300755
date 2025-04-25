@@ -60,7 +60,7 @@ public class Registro implements ActionListener {
                 //verificando la extencion del archivo
                 if (!imagen.contains(".jpg")) {
                     imagen="XXXX";
-                    JOptionPane.showMessageDialog(view,"Imagen no valida, solo se perfime formato PNG o JPG", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view,"Imagen no valida, solo se perfime formato JPG", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
                 
                 view.txtImg.setText(imagen);
@@ -71,13 +71,22 @@ public class Registro implements ActionListener {
                 //verificando que no esten vacias las celdas
                 boolean condicion =(!imagen.equals("") && !imagen.equals("XXXX")) && (!placa.equals("") && !placa.equals("000AAA")) && (!marca.equals("") && !marca.equals("Ingrese la marca")) && (!modelo.equals("") && !modelo.equals("Ingrese el modelo"));
 
-                if (condicion) {
+                if (condicion && imagen.contains(".jpg")) {
                     String concatenado=placa+","+marca+","+modelo+","+imagen;
-                    //agregando el vehiculo
-                    p1.AgregarVehiculo(p1, concatenado);
-                    System.out.println(p1.getVehiculos()[0]);
                     
-                    JOptionPane.showMessageDialog(view,"Vehiculo agregado correctamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                    if (!p1.PlacaDuplicada(placa)) {
+                        //agregando el vehiculo
+                        p1.AgregarVehiculo(p1, concatenado);
+
+                        JOptionPane.showMessageDialog(view,"Vehiculo agregado correctamente", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                    }else{
+                        JOptionPane.showMessageDialog(null, "Placa duplicada");
+                    
+                    }
+                    
+                }else if (!imagen.contains(".jpg")) {
+                    imagen="XXXX";
+                    JOptionPane.showMessageDialog(view,"Imagen no valida, solo se perfime formato JPG", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(view,"Porfavor llene los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }

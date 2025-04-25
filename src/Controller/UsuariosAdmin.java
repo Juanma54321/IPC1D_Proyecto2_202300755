@@ -131,7 +131,7 @@ public class UsuariosAdmin implements ActionListener{
             case ("Buscar"):
                 //obteniendo el numero de cliente que se desea buscar del combo box
                 int index = view.ListaClientes.getSelectedIndex();
-                if (index>=0) {
+                if (index>=0 && libreria_usuarios[index].getVehiculos()!=null) {
                     JOptionPane.showMessageDialog(view,"Vehiculos encontrados","INFO",JOptionPane.INFORMATION_MESSAGE);
                     //actualizando la tabla de vehiculos
                     RefreshVehiculos(libreria_usuarios[index]);
