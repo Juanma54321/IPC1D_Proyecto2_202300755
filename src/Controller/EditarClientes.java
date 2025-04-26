@@ -99,6 +99,7 @@ public class EditarClientes implements ActionListener{
         
         //ingresando el nuevo usuario a la libreria
         libreria_usuarios[x]=p1;
+        model.OrdearPlacas();
     }
     
     //metodo para verificar si todos los datos son correctos

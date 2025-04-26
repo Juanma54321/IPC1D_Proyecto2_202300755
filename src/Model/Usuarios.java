@@ -136,6 +136,7 @@ public class Usuarios implements Serializable {
                     }
                     //ordedando los usuarios por el DPI
                     Ordenamiento(libreria_usuarios);
+                    OrdearPlacas();
                     
                 }
                 catch(IOException f){
@@ -252,7 +253,7 @@ public class Usuarios implements Serializable {
             libreria_usuarios[PosicionCliente(p1)]=p1;
             
         }
-        
+        OrdearPlacas();
     }
     
     /**
@@ -313,4 +314,58 @@ public class Usuarios implements Serializable {
         
         return repetido;
     }
+
+    //metodo para ordenar las placas con Shell sort
+    public void OrdearPlacas(){
+        //repetimos el ordenamiento por cada usuarios
+        for (int i = 0; i < ContadorUsuarios() ; i++) {
+            
+            if (libreria_usuarios[i].getVehiculos()!=null) {
+                String[] Vehiculos = libreria_usuarios[i].getVehiculos();
+            
+                int n = Vehiculos.length;
+
+                //Se inicia definiendo el espacio entre los elementos
+                for (int x = n / 2; x > 0; x/= 2) {
+                    //Se realiza el ordenamiento por inserción para cada gap
+                    for (int y = x; y < n; y++) {
+                        String temp = Vehiculos[y];
+                        int j = y;
+
+                        // Comparar usando la primera característica de cada registro
+                        while (j >= x && compararPrimerCampo(Vehiculos[j - x], temp) > 0) {
+                            Vehiculos[j] = Vehiculos[j - x];
+                            j -= x;
+                        }
+                        Vehiculos[j] = temp;
+                    }
+                }
+                libreria_usuarios[i].setVehiculos(Vehiculos);
+
+            }
+        }
+    }
+    private int compararPrimerCampo(String a, String b) {
+       String campoA = a.split(",")[0];
+        String campoB = b.split(",")[0];
+
+        // Extraer parte numérica
+        String numeroA = campoA.replaceAll("[^0-9]", ""); // Deja solo números
+        String numeroB = campoB.replaceAll("[^0-9]", "");
+
+        // Extraer parte de letras
+        String letrasA = campoA.replaceAll("[0-9]", ""); // Deja solo letras
+        String letrasB = campoB.replaceAll("[0-9]", "");
+
+        // Comparar números
+        int numA = Integer.parseInt(numeroA);
+        int numB = Integer.parseInt(numeroB);
+
+        if (numA != numB) {
+            return Integer.compare(numA, numB); // Primero por número
+        } else {
+            return letrasA.compareToIgnoreCase(letrasB); // Luego por letras (sin importar mayúsculas)
+        }
+    }
+
 }
