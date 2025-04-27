@@ -3,7 +3,6 @@ package Controller;
 
 import static Model.Inventario.libreria_inventario;
 import static Model.Servicios.libreria_servicios;
-import static Model.Usuarios.contador;
 import static Model.Usuarios.libreria_usuarios;
 
 import View.EliminarVista;
@@ -78,7 +77,6 @@ public class EliminarUniversal implements ActionListener{
         if (LibreriaUsuarios) {
             //eliminando el usuario seleccionado
             libreria_usuarios[posicion]=null;
-            contador--;
             //corriendo los datos despues del elemento eliminado
             for (int i = 0; i < (numero-posicion); i++) {
                 libreria_usuarios[posicion+i]=libreria_usuarios[posicion+i+1];

@@ -35,13 +35,29 @@ import javax.swing.table.DefaultTableModel;
     
     //metodo para agregar vehiculos a la cola
     public void AgregarVehiculo(Vehiculos v1){
-        // Guardamos el ID del vehículo en el arreglo
-        colaEspera[contadorCola]=v1;
-        System.out.println("vehiculo agregado: "+ v1.getPlaca());
-        v1.BorrarDatos(v1);
-        contadorCola++;
-    }
+        
+        //verificamos si es un vehiculo de un cliente oro
+        if (!v1.isDueñoOro()) {
+            //aumentamos el contador del cliente
+            user.ClienteOro(user);
+            // Guardamos el ID del vehículo en el arreglo
+            colaEspera[contadorCola]=v1;
+            v1.BorrarDatos(v1);
+            contadorCola++;
+        }else{
+            if (ticket!=0) {
+                //lo coloclamos al frente de la cola
+                ticket--;
+                colaEspera[ticket] = v1;
+            }else{
+               colaEspera[0]=v1;
+               contadorCola++;
+            }
+            System.out.println("holasadfasdf");
+        }
+    }    
     
+    //constructor
     public TiemposEspera(Usuarios user,Usuarios model,Servicios s,Vehiculos veh, ProgresoAdminVista viewAdmin, ProgresoUserVista viewUser) {
         this.model = model;
         this.user=user;
@@ -137,6 +153,7 @@ import javax.swing.table.DefaultTableModel;
             v1.setModelo(caracteristicas[2]);
             v1.setImagen( caracteristicas[3]);   
             v1.setDueño(user.getNombre());
+            v1.setDueñoOro(user.isCliente_oro());
             v1.setSercicio(libreria_servicios[servicio]);
             
             //si no se a añadido algun carro
@@ -192,45 +209,4 @@ import javax.swing.table.DefaultTableModel;
             break;
         }
     }
-    
-    /*
-    private void cargarColaEspera(){
-        //el taller estara abierto siempre, esperado que entren clientes
-        while(true){
-            
-            // verificar que aun queden por procesar en la cola, comparando el numero de registro con el numero total de registros
-            if (ticket<contadorCola) {
-                System.out.println("hola");
-                // obtener el vehiculo que se va a procesar
-                Vehiculos v1 = colaEspera[ticket];
-                //mostramos que vehiculo esta esperando
-                viewUser.PlacaEsperando.setText(v1.getPlaca());
-                // simular la barra de 0 a 100
-                for (int i = 0; i < 100; i++) {
-                    final int progreso = i; // valor que se asigna a la barra de progreso
-                    SwingUtilities.invokeLater(() -> viewUser.BarraEspera.setValue(progreso));
-                    try {
-                        Thread.sleep(100); // Espera entre cada incremento 
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt(); //si falla colocar el hilo como interrumpido
-                    }
-                }
-                // -- mandar los registros o vehiculos a otro vector para poder pasar a otro proceso--
-                colaServicio[0]=v1;
-                ticket++;
-                
-            } else {
-                try {
-                    Thread.sleep(500); // espera 500 ms si no hay nada que procesar
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt(); // interrumpir hilo
-                }
-            }
-            SwingUtilities.invokeLater(() -> viewUser.BarraEspera.setValue(0));
-            viewUser.PlacaEsperando.setText("000XXX");
-        
-        
-        }
-    }
-    */
 }

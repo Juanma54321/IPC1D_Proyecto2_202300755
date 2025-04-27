@@ -41,7 +41,7 @@ public class HiloEstatico {
             listener.actualizarServicio(progresoServicio);
             //vehiculo en servicio
             if (colaServicio[ticket2]!=null) {
-                listener.actualizarPlacaServicio(colaServicio[ticket].getPlaca());
+                listener.actualizarPlacaServicio(colaServicio[ticket2].getPlaca());
             }
             //barra de vehiculos listos
             listener.actualizarListo(progresoListo);
@@ -68,35 +68,35 @@ public class HiloEstatico {
             if (ticket<contadorCola) {
                 // obtener el vehiculo que se va a procesar
                 Vehiculos v1 = colaEspera[ticket];
-                // simular la barra de 0 a 100
-                for (int i = 0; i < 100; i++) {
-                    final int revisando = i; // valor que se asigna a la barra de progreso
-                    progreso=revisando;
-                    //mostramos que vehiculo esta esperando
-                    listener.actualizarProgreso(progreso);
-                    listener.actualizarPlaca(v1.getPlaca());
-                    try {
-                        Thread.sleep(110); // Espera entre cada incremento, para que la espera total sean 11 segundos 
-                    
-                    } catch (InterruptedException e) {
-                       
-                        Thread.currentThread().interrupt(); //si falla colocar el hilo como interrumpido
-                    
-                    }
-                }
-                
-                // -- mandar los registros o vehiculos a otro vector para poder pasar a otro proceso--
-                colaServicio[contadorColaServicio]=v1;
-                
                 //borramos el vehiculo de la cola de espera para pasalo a la cola de servicio
                 colaEspera[ticket]=null;
-                contadorColaServicio++;
                 ticket++;
+                //si esta vacio la cola de servicio pasa directo
+                if (contadorColaServicio!=0) {
+                    // simular la barra de 0 a 100
+                    for (int i = 0; i < 100; i++) {
+                        final int revisando = i; // valor que se asigna a la barra de progreso
+                        progreso=revisando;
+                        //mostramos que vehiculo esta esperando
+                        listener.actualizarProgreso(progreso);
+                        listener.actualizarPlaca(v1.getPlaca());
+                        try {
+                            Thread.sleep(110); // Espera entre cada incremento, para que la espera total sean 11 segundos 
+
+                        } catch (InterruptedException e) {
+
+                            Thread.currentThread().interrupt(); //si falla colocar el hilo como interrumpido
+
+                        }
+
+                    }
+                }
+                // -- mandar los registros o vehiculos a otro vector para poder pasar a otro proceso--
+                colaServicio[contadorColaServicio]=v1;    
+                contadorColaServicio++;
                 
                 //iniciamos el otro hilo
                 cargaColaServicio();
-                
-                
                 
             } else {
                 //reiniciamos los valores de control si no hay nadie en la cola

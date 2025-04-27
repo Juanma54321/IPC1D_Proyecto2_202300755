@@ -11,10 +11,19 @@ public class Vehiculos implements Serializable{
     private String imagen;
     private String dueño;
     private Servicios sercicio;
+    private boolean dueñoOro;
     
     //la capacidad del taller
     public static Vehiculos[] libreria_vehiculos= new Vehiculos[50];
 
+    public boolean isDueñoOro() {
+        return dueñoOro;
+    }
+
+    public void setDueñoOro(boolean dueñoOro) {
+        this.dueñoOro = dueñoOro;
+    }
+    
     public void setPlaca(String placa) {
         this.placa = placa;
     }

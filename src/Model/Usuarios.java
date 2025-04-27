@@ -17,14 +17,11 @@ public class Usuarios implements Serializable {
     private String password;
     private boolean cliente_oro=false;
     private String [] vehiculos;
-    private byte contador=0;
+    private byte contadorServicios=0;
     
     //libreria donde se registraran los usuarios para poder ingresar
     public static Usuarios [] libreria_usuarios =new Usuarios[50];
     
-    //contador didamico para poder ingresar usuarios
-    public static int contador=0;
-
     //usuario administrativo
     String usuariopriv= "Juanma321";
     String passwordpriv="hola";
@@ -78,6 +75,15 @@ public class Usuarios implements Serializable {
     public void setVehiculos(String[] vehiculos) {
         this.vehiculos = vehiculos;
     }
+
+    public byte getContadorServicios() {
+        return contadorServicios;
+    }
+
+    public void setContadorServicios(byte contadorServicios) {
+        this.contadorServicios = contadorServicios;
+    }
+    
     
     
     //metodo para poder registrar usuarios en el sistema
@@ -116,9 +122,11 @@ public class Usuarios implements Serializable {
                         p1.nombre=listatemporal[1];
                         p1.nombre_usuario=listatemporal[2];
                         p1.password=listatemporal[3];
-                        if (listatemporal[4].equals("oro")){
+                        
+                        if (listatemporal[4].equalsIgnoreCase("oro")){
                             p1.cliente_oro=true;
                         }
+                        
                         p1.vehiculos=listatemporal[5].split(";");
                         
                         //verificando si no existe el usuario
@@ -132,7 +140,7 @@ public class Usuarios implements Serializable {
                         if (!usuarioRepetido) {
                             //guardando al cliente en la libreria global
                             libreria_usuarios[ContadorUsuarios()] = p1;
-                            contador++;
+
                         }
                     }
                     //ordedando los usuarios por el DPI
@@ -365,6 +373,22 @@ public class Usuarios implements Serializable {
         } else {
             return letrasA.compareToIgnoreCase(letrasB); // Luego por letras (sin importar mayúsculas)
         }
+    }
+    
+    public void ClienteOro(Usuarios user){
+        if (user.getContadorServicios()<4) {
+            //obtenemos el numero de servicios
+            byte x = user.getContadorServicios();
+            x++;
+            //al cumplir cuatro servicios, se convierte a cliente oro
+            if (x==4) {
+                user.setCliente_oro(true);
+            }
+            //guardamos los datos y al cliente
+            user.setContadorServicios(x);
+            libreria_usuarios[PosicionCliente(user)]=user;
+        }
+    
     }
 
 }
