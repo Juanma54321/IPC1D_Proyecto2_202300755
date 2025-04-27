@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/View/ProgresoAdminVista.java</file>
+            <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Controller/ProgresoListener.java</file>
+            <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Controller/HiloEstatico.java</file>
             <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Controller/Registro.java</file>
-            <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Controller/EditarServicios.java</file>
             <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Controller/VerVehiculo.java</file>
-            <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Controller/TiemposEspera.java</file>
             <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/View/UserVista.java</file>
-            <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Model/Usuarios.java</file>
+            <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Controller/User.java</file>
+            <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/Model/Vehiculos.java</file>
             <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/View/ProgresoUserVista.java</file>
             <file>file:/C:/Users/manum/Desktop/manuel/IPC1%20Lab/Proyecto2/src/View/ImgTabla.java</file>
         </group>

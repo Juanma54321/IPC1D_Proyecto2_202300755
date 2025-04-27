@@ -17,6 +17,7 @@ public class Usuarios implements Serializable {
     private String password;
     private boolean cliente_oro=false;
     private String [] vehiculos;
+    private byte contador=0;
     
     //libreria donde se registraran los usuarios para poder ingresar
     public static Usuarios [] libreria_usuarios =new Usuarios[50];

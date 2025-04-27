@@ -24,11 +24,14 @@ import javax.swing.table.DefaultTableModel;
     private Vehiculos veh;
     
     //capacidad de 50 carros en el taller para esperar
-    private static Vehiculos[] colaEspera = new Vehiculos[50];
+    public static Vehiculos[] colaEspera = new Vehiculos[50];
+    //capacidad de 50 para hacer servicio
+    public static Vehiculos[] colaServicio = new Vehiculos[50];
+    
     //ticket del que esta siendo atendido
-    private static int ticket=0;
+    public static int ticket=0;
     //indicator de carros en espera
-    private static int contadorCola=0;
+    public static int contadorCola=0;
     
     //metodo para agregar vehiculos a la cola
     public void AgregarVehiculo(Vehiculos v1){
@@ -65,6 +68,10 @@ import javax.swing.table.DefaultTableModel;
         viewUser.setTitle("Ver Progreso");
         viewUser.setLocationRelativeTo(null);
         MostrarDatos(user);
+        
+        //creando el hilo
+        HiloEstatico.cargarColaEspera();
+        
     
         //mostrando la tabla con vehiculos añadidos
         String[] vehiculos = user.getVehiculos();
@@ -172,9 +179,12 @@ import javax.swing.table.DefaultTableModel;
                     Vehiculos v1= new Vehiculos();
                     String placa =(String) viewUser.TablaDatos.getValueAt(0, 0);
                     
+                    DefaultTableModel tablanueva = (DefaultTableModel) viewUser.TablaDatos.getModel();
+                    tablanueva.removeRow(0);
+                    
                     AgregarVehiculo(v1.VehiculoEncontrado(placa));
                     JOptionPane.showMessageDialog(viewUser,"Vehiculo ingresado al taller", "INFO",JOptionPane.INFORMATION_MESSAGE);
-                    new Thread(this::cargarColaEspera).start();
+                    
                 }else{
                     JOptionPane.showMessageDialog(viewUser,"No tienes ningun vehiculo añadido", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
@@ -183,7 +193,7 @@ import javax.swing.table.DefaultTableModel;
         }
     }
     
-    
+    /*
     private void cargarColaEspera(){
         //el taller estara abierto siempre, esperado que entren clientes
         while(true){
@@ -206,6 +216,7 @@ import javax.swing.table.DefaultTableModel;
                     }
                 }
                 // -- mandar los registros o vehiculos a otro vector para poder pasar a otro proceso--
+                colaServicio[0]=v1;
                 ticket++;
                 
             } else {
@@ -215,10 +226,11 @@ import javax.swing.table.DefaultTableModel;
                     Thread.currentThread().interrupt(); // interrumpir hilo
                 }
             }
-            
+            SwingUtilities.invokeLater(() -> viewUser.BarraEspera.setValue(0));
+            viewUser.PlacaEsperando.setText("000XXX");
         
         
         }
     }
-    
+    */
 }
