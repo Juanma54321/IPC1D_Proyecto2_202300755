@@ -305,9 +305,7 @@ public class Usuarios implements Serializable {
                         repetido=true;
                         break;
                     }
-                }
-            
-                
+                }  
             }
         }
         

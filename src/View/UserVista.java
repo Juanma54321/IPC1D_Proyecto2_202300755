@@ -41,7 +41,7 @@ public class UserVista extends javax.swing.JFrame {
         btnProgreso.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
         btnProgreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMG/Servicios.png"))); // NOI18N
         btnProgreso.setText("Ver Progreso");
-        btnProgreso.setActionCommand("Ver");
+        btnProgreso.setActionCommand("Progreso");
         jPanel1.add(btnProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 150, 40));
 
         btnVer.setBackground(new java.awt.Color(204, 204, 204));

@@ -7,6 +7,8 @@ import Model.Servicios;
 import static Model.Servicios.libreria_servicios;
 import Model.Usuarios;
 import static Model.Usuarios.libreria_usuarios;
+import Model.Vehiculos;
+import static Model.Vehiculos.libreria_vehiculos;
 import View.AdminVista;
 import View.ClienteNuevoVista;
 import View.LoginVista;
@@ -16,7 +18,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -64,6 +65,7 @@ public class Login implements ActionListener{
                 salida.writeObject(libreria_usuarios);
                 salida.writeObject(libreria_inventario);
                 salida.writeObject(libreria_servicios);
+                salida.writeObject(libreria_vehiculos);
                 System.out.println("Objeto serializado Correctamente");
             }catch (IOException l){
                 System.out.println("el error es: "+ l.toString());
@@ -79,6 +81,7 @@ public class Login implements ActionListener{
             libreria_usuarios = (Usuarios[]) entrada.readObject();
             libreria_inventario=(Inventario[]) entrada.readObject();
             libreria_servicios=(Servicios[]) entrada.readObject();
+            libreria_vehiculos=(Vehiculos[]) entrada.readObject();
             entrada.close();
 
             System.out.println("Objetos deserializados");
@@ -102,24 +105,27 @@ public class Login implements ActionListener{
 
                 //si es un admin
                 if (contador==1) {
+                    JOptionPane.showMessageDialog(view, "MODO ADMINISTRADOR", "INFO", JOptionPane.INFORMATION_MESSAGE);
+                    
                     AdminVista view1 = new AdminVista();
 
                     Admin controller = new Admin(view1);
-
+                    
+                    
                     view.dispose();
                     controller.IniciarVista();
                 //si es un cliente
                 }else if (contador==2) {
-
+                    JOptionPane.showMessageDialog(view, "Bienvenido al taller Don Juan", "INFO", JOptionPane.INFORMATION_MESSAGE);
                     UserVista view2= new UserVista();
                     Usuarios p1= model.BuscadorDeUsuarios(user, pass);
 
                     User controller1 = new User(p1,view2);
 
                     controller1.IniciarVista();
-
+                    
                     view.dispose();
-
+                    
                 }
                 else{
                     JOptionPane.showMessageDialog(view, "Usuario o contraseña incorrectas", "ERROR", JOptionPane.ERROR_MESSAGE);

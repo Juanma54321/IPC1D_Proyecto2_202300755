@@ -75,8 +75,10 @@ public class EditarServicios implements ActionListener{
         view.listaRepuestos.removeAllItems();
         for (int i = 0; i < libreria_inventario.length; i++) {
             if (libreria_inventario[i]!=null) {
-                if (libreria_inventario[i].getMarca().equalsIgnoreCase(s1.getMarca()) && libreria_inventario[i].getModelo().equalsIgnoreCase(s1.getModelo())) {
+                if (libreria_inventario[i].getMarca().equalsIgnoreCase(s1.getMarca()) && 
+                        libreria_inventario[i].getModelo().equalsIgnoreCase(s1.getModelo())) {
                     view.listaRepuestos.addItem(libreria_inventario[i].getNombre());
+                
                 }else if(libreria_inventario[i].getMarca().equalsIgnoreCase("cualquiera")) {
                     view.listaRepuestos.addItem(libreria_inventario[i].getNombre());
                 }
@@ -88,10 +90,6 @@ public class EditarServicios implements ActionListener{
     private void ActualizarTabla(Servicios s1){
         int contador=0;
         
-        
-         {
-            
-        }
         //obteniendo la lista de repuestos y buscandolos
         String[] listaRepuestos = s1.getLista_repuestos().split(";");
         String[] Repuestos= new String[listaRepuestos.length];

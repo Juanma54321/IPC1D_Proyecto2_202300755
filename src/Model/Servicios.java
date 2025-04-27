@@ -10,6 +10,7 @@ import java.io.Serializable;
 import javax.swing.JOptionPane;
 
 public class Servicios implements Serializable{
+    private static final long serialVersionUID = 2L;
     private String ID;
     private String nombre_servicio;
     private String marca;

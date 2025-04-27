@@ -57,7 +57,7 @@
               <Image iconType="3" name="/IMG/Servicios.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ver Progreso"/>
-            <Property name="actionCommand" type="java.lang.String" value="Ver"/>
+            <Property name="actionCommand" type="java.lang.String" value="Progreso"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

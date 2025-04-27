@@ -1,8 +1,11 @@
 
 package Controller;
 
+import Model.Servicios;
 import Model.Usuarios;
+import Model.Vehiculos;
 import View.LoginVista;
+import View.ProgresoUserVista;
 import View.RegistroVista;
 import View.UserVista;
 import View.VerVehiculosVista;
@@ -14,6 +17,7 @@ import javax.swing.JOptionPane;
 public class User implements ActionListener{
     private UserVista view;
     private Usuarios user;
+    public static boolean barra=false;
 
     public User(Usuarios user,UserVista view) {
         this.view = view;
@@ -21,6 +25,7 @@ public class User implements ActionListener{
         this.view.BtnCerrar.addActionListener(this);
         this.view.btnRegistrar.addActionListener(this);
         this.view.btnVer.addActionListener(this);
+        this.view.btnProgreso.addActionListener(this);
         
     }
     
@@ -68,6 +73,22 @@ public class User implements ActionListener{
                 }else{
                     JOptionPane.showMessageDialog(view,"No existen vehiculos registrados","ERROR", JOptionPane.ERROR_MESSAGE);
                 }
+                break;
+            //accion del boton ver progreso
+            case ("Progreso"):
+                if (user.getVehiculos()!=null) {
+                    ProgresoUserVista view4 = new ProgresoUserVista();
+                    Usuarios model4 = new Usuarios();
+                    Servicios model5 = new Servicios();
+                    Vehiculos model6 = new Vehiculos(); 
+                    
+                    TiemposEspera controller4 = new TiemposEspera(user,model4,model5,model6,null,view4);
+                    controller4.IniciarVistaUser();
+                }else{
+                    JOptionPane.showMessageDialog(view,"No existen vehiculos registrados","ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+                
+                
                 break;
         }
     

@@ -24,21 +24,143 @@ public class ProgresoUserVista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        ListaVehiculos = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        ListaServicios = new javax.swing.JComboBox<>();
+        PlacaListo = new javax.swing.JLabel();
+        btnAñadir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaDatos = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        btnProcesar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        BarraEspera = new javax.swing.JProgressBar();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        PlacaEsperando = new javax.swing.JLabel();
+        BarraSercicio = new javax.swing.JProgressBar();
+        jLabel7 = new javax.swing.JLabel();
+        BarraListo = new javax.swing.JProgressBar();
+        jLabel8 = new javax.swing.JLabel();
+        PlacaServicio = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        ListaVehiculos.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        ListaVehiculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(ListaVehiculos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 140, -1));
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Vehiculo");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        ListaServicios.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        ListaServicios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel1.add(ListaServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 260, -1));
+
+        PlacaListo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        PlacaListo.setForeground(new java.awt.Color(255, 255, 255));
+        PlacaListo.setText("000XXX");
+        jPanel1.add(PlacaListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 470, -1, -1));
+
+        btnAñadir.setBackground(new java.awt.Color(0, 204, 204));
+        btnAñadir.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        btnAñadir.setForeground(new java.awt.Color(255, 255, 255));
+        btnAñadir.setText("Añadir a Orden de trabajo");
+        btnAñadir.setActionCommand("Añadir");
+        btnAñadir.setBorder(null);
+        btnAñadir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAñadirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAñadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 190, 30));
+
+        TablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Placa", "Marca", "Modelo", "Servicio"
+            }
+        ));
+        jScrollPane1.setViewportView(TablaDatos);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 450, 140));
+
+        jLabel3.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Servicio");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, -1));
+
+        btnProcesar.setBackground(new java.awt.Color(204, 204, 0));
+        btnProcesar.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        btnProcesar.setForeground(new java.awt.Color(255, 255, 255));
+        btnProcesar.setText("Procesar");
+        btnProcesar.setBorder(null);
+        jPanel1.add(btnProcesar, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 280, 80, 30));
+
+        jLabel4.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Datos del vehiculo");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+        jPanel1.add(BarraEspera, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 350, 20));
+
+        jLabel5.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Cola Espera");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 80, -1));
+
+        jLabel6.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Cola Espera");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, 80, -1));
+
+        PlacaEsperando.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        PlacaEsperando.setForeground(new java.awt.Color(255, 255, 255));
+        PlacaEsperando.setText("000XXX");
+        jPanel1.add(PlacaEsperando, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, -1, -1));
+        jPanel1.add(BarraSercicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 350, 20));
+
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("En Servicio");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, 80, -1));
+        jPanel1.add(BarraListo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 350, 20));
+
+        jLabel8.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Listo, Entrega de vehiculo");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 190, -1));
+
+        PlacaServicio.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 14)); // NOI18N
+        PlacaServicio.setForeground(new java.awt.Color(255, 255, 255));
+        PlacaServicio.setText("000XXX");
+        jPanel1.add(PlacaServicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAñadirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAñadirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,5 +198,25 @@ public class ProgresoUserVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JProgressBar BarraEspera;
+    public javax.swing.JProgressBar BarraListo;
+    public javax.swing.JProgressBar BarraSercicio;
+    public javax.swing.JComboBox<String> ListaServicios;
+    public javax.swing.JComboBox<String> ListaVehiculos;
+    public javax.swing.JLabel PlacaEsperando;
+    public javax.swing.JLabel PlacaListo;
+    public javax.swing.JLabel PlacaServicio;
+    public javax.swing.JTable TablaDatos;
+    public javax.swing.JButton btnAñadir;
+    public javax.swing.JButton btnProcesar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
