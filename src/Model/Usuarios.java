@@ -114,7 +114,6 @@ public class Usuarios implements Serializable {
                             break;
                             
                         }
-                        
                         //creando el objeto con las caracteristicas de un clinte
                         Usuarios p1 = new Usuarios();
                         //registrando los datos de la lista temporal
@@ -283,7 +282,7 @@ public class Usuarios implements Serializable {
     //Metodo para verificar el CUi
     public boolean VerficadorCUI(String cui){
         //verificando que el cui sean solo nunmeros
-        if (cui.matches("\\d+")) {
+        if (cui.matches("\\d+") && cui.length()==13) {
             //verificando si el cui no existe en la biblioteca
             for (int i = 0; i < ContadorUsuarios(); i++) {
                 if (cui.equals(libreria_usuarios[i].getCui())) {
