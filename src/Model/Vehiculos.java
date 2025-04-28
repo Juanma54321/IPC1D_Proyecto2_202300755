@@ -12,6 +12,7 @@ public class Vehiculos implements Serializable{
     private String dueño;
     private Servicios sercicio;
     private boolean dueñoOro;
+    private float costoTotal;
     
     //la capacidad del taller
     public static Vehiculos[] libreria_vehiculos= new Vehiculos[50];
@@ -71,6 +72,16 @@ public class Vehiculos implements Serializable{
     public Servicios getSercicio() {
         return sercicio;
     }
+
+    public float getCostoTotal() {
+        return costoTotal;
+    }
+
+    public void setCostoTotal(float costoTotal) {
+        this.costoTotal = costoTotal;
+    }
+    
+    
     
     //metodo para contar cuantos vehiculos existen
     public int ContadorVehiculos(){

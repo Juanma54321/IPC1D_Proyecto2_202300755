@@ -4,17 +4,87 @@
  */
 package View;
 
+import Model.HiloTablas;
+import Controller.ActualizarTablasListener;
+import Model.Vehiculos;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author manum
  */
-public class ProgresoAdminVista extends javax.swing.JFrame {
+public class ProgresoAdminVista extends javax.swing.JFrame implements ActualizarTablasListener  {
 
+    
+    
     /**
      * Creates new form ProgresoAdminVista
      */
     public ProgresoAdminVista() {
         initComponents();
+        HiloTablas.setListenerTablas(this); // Conectar vista al hilo
+    }
+    
+    @Override
+    public void actualizarTablaEspera(Vehiculos[] colaEspera) {
+        SwingUtilities.invokeLater(() -> {
+            DefaultTableModel tablaNueva = (DefaultTableModel) TablaEspera.getModel();
+            tablaNueva.setRowCount(0); // Limpiar la tabla
+
+            for (int i = 0; i < colaEspera.length; i++) {
+                Vehiculos v = colaEspera[i];
+                if (v != null) {
+                    tablaNueva.addRow(new Object[]{
+                        (i + 1), // Número de orden
+                        v.getMarca() + " " + v.getModelo(), // Vehículo
+                        v.getDueño() // Cliente
+                    });
+                }
+            }
+        });
+    }
+    
+    @Override
+    public void actualizarTablaServicio(Vehiculos[] colaServicio) {
+        SwingUtilities.invokeLater(() -> {
+            DefaultTableModel tablaNueva = (DefaultTableModel) TablaServicio.getModel();
+            tablaNueva.setRowCount(0); // Limpiar la tabla
+
+            for (int i = 0; i < colaServicio.length; i++) {
+                Vehiculos v = colaServicio[i];
+                if (v != null){
+                    tablaNueva.addRow(new Object[]{
+                        (i + 1), // Número de orden
+                        v.getMarca() + " " + v.getModelo(), // Vehículo
+                        v.getDueño(), // Cliente
+                        "No asignado" // Mecánico
+                    });
+                    tablaNueva.setValueAt("pepe", 0,3);
+                }
+            }
+        });
+    }
+    
+    @Override
+    public void actualizarTablaListos(Vehiculos[] colaListos) {
+        SwingUtilities.invokeLater(() -> {
+            DefaultTableModel tablaNueva = (DefaultTableModel) TablaListo.getModel();
+            tablaNueva.setRowCount(0); // Limpiar la tabla
+
+            for (int i = 0; i < colaListos.length; i++) {
+                Vehiculos v = colaListos[i];
+                if (v != null) {
+                    tablaNueva.addRow(new Object[]{
+                        (i + 1), // Número de orden
+                        v.getMarca() + " " + v.getModelo(), // Vehículo
+                        v.getDueño(), // Cliente
+                        v.getSercicio().getNombre_servicio(), // Nombre del servicio
+                        v.getCostoTotal() // Precio total
+                    });
+                }
+            }
+        });
     }
 
     /**
@@ -28,9 +98,9 @@ public class ProgresoAdminVista extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaEspera = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TablaEspera1 = new javax.swing.JTable();
+        TablaServicio = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        TablaEspera2 = new javax.swing.JTable();
+        TablaListo = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -56,8 +126,8 @@ public class ProgresoAdminVista extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 250, 150));
 
-        TablaEspera1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        TablaEspera1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaServicio.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        TablaServicio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -65,14 +135,14 @@ public class ProgresoAdminVista extends javax.swing.JFrame {
                 "Orden", "Vehiculo", "Cliente", "Mecanico"
             }
         ));
-        TablaEspera1.setGridColor(new java.awt.Color(0, 0, 0));
-        TablaEspera1.setInheritsPopupMenu(true);
-        jScrollPane2.setViewportView(TablaEspera1);
+        TablaServicio.setGridColor(new java.awt.Color(0, 0, 0));
+        TablaServicio.setInheritsPopupMenu(true);
+        jScrollPane2.setViewportView(TablaServicio);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 250, 150));
 
-        TablaEspera2.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
-        TablaEspera2.setModel(new javax.swing.table.DefaultTableModel(
+        TablaListo.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 12)); // NOI18N
+        TablaListo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -80,9 +150,9 @@ public class ProgresoAdminVista extends javax.swing.JFrame {
                 "Orden", "Vehiculo", "Cliente", "Servicio", "Total"
             }
         ));
-        TablaEspera2.setGridColor(new java.awt.Color(0, 0, 0));
-        TablaEspera2.setInheritsPopupMenu(true);
-        jScrollPane3.setViewportView(TablaEspera2);
+        TablaListo.setGridColor(new java.awt.Color(0, 0, 0));
+        TablaListo.setInheritsPopupMenu(true);
+        jScrollPane3.setViewportView(TablaListo);
 
         jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 370, 200));
 
@@ -152,8 +222,8 @@ public class ProgresoAdminVista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTable TablaEspera;
-    public javax.swing.JTable TablaEspera1;
-    public javax.swing.JTable TablaEspera2;
+    public javax.swing.JTable TablaListo;
+    public javax.swing.JTable TablaServicio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

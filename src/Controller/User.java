@@ -3,7 +3,7 @@ package Controller;
 
 import Model.Servicios;
 import Model.Usuarios;
-import Model.Vehiculos;
+
 import View.LoginVista;
 import View.ProgresoUserVista;
 import View.RegistroVista;
@@ -78,11 +78,9 @@ public class User implements ActionListener{
             case ("Progreso"):
                 if (user.getVehiculos()!=null) {
                     ProgresoUserVista view4 = new ProgresoUserVista();
-                    Usuarios model4 = new Usuarios();
                     Servicios model5 = new Servicios();
-                    Vehiculos model6 = new Vehiculos(); 
                     
-                    TiemposEspera controller4 = new TiemposEspera(user,model4,model5,model6,null,view4);
+                    TiemposEspera controller4 = new TiemposEspera(user,model5,view4);
                     controller4.IniciarVistaUser();
                 }else{
                     JOptionPane.showMessageDialog(view,"No existen vehiculos registrados","ERROR", JOptionPane.ERROR_MESSAGE);

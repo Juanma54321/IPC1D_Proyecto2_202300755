@@ -1,6 +1,7 @@
 
 package Controller;
 
+import Model.HiloTablas;
 import Model.Inventario;
 import static Model.Inventario.libreria_inventario;
 import Model.Servicios;
@@ -8,6 +9,7 @@ import Model.Usuarios;
 import static Model.Usuarios.libreria_usuarios;
 import View.AdminVista;
 import View.LoginVista;
+import View.ProgresoAdminVista;
 import View.RepuestosVista;
 import View.ServiciosVista;
 import View.UsuariosAdminVista;
@@ -24,6 +26,7 @@ public class Admin implements ActionListener{
         this.view.BtnRepuestos.addActionListener(this);
         this.view.BtnClietnes.addActionListener(this);
         this.view.BtnServicios.addActionListener(this);
+        this.view.BtnProgreso.addActionListener(this);
     }
     
     //metodo para iniciar la vista
@@ -87,6 +90,14 @@ public class Admin implements ActionListener{
                 }else{
                     JOptionPane.showMessageDialog(view,"No existen repuestos para crear servicios", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
+                break;
+            //accion del boton progreso de vehiculos
+            case("Progreso"):
+                ProgresoAdminVista view5 = new ProgresoAdminVista();
+                VerProgresoAdmin controller5 = new VerProgresoAdmin(view5);
+                
+                controller5.InciarVistaAdmin();
+                
                 break;
         }
     

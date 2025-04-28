@@ -1,6 +1,7 @@
 
-package Controller;
+package Model;
 
+import Controller.ProgresoListener;
 import static Controller.TiemposEspera.colaEspera;
 import static Controller.TiemposEspera.colaServicio;
 import static Controller.TiemposEspera.contadorCola;
@@ -200,9 +201,8 @@ public class HiloEstatico {
                     }
                     ticket3++;
                 }else{
-                     //reiniciamos los valores de control si no hay nadie en la cola
-                    ticket3=0;
-                    contadorColaListo=0;
+                    //reiniciamos los valores de control si no hay nadie en la cola
+                    
                     try {
                         Thread.sleep(500); // espera 500 ms si no hay nada que procesar
                     } catch (InterruptedException e) {

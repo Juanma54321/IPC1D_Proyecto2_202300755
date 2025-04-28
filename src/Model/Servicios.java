@@ -17,6 +17,7 @@ public class Servicios implements Serializable{
     private String modelo;
     private String lista_repuestos;
     private float precio_mano_obra;
+    private float precioTotal;
     
     //libreria donde se guardaran todos los servicios
     public static Servicios[] libreria_servicios = new Servicios[50];
@@ -67,6 +68,14 @@ public class Servicios implements Serializable{
 
     public void setPrecio_mano_obra(float precio_mano_obra) {
         this.precio_mano_obra = precio_mano_obra;
+    }
+
+    public float getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(float precioTotal) {
+        this.precioTotal = precioTotal;
     }
     
     //metodo para ingresar servicios en el sistema
@@ -149,6 +158,8 @@ public class Servicios implements Serializable{
                             libreria_servicios[ContadorServicios()]=s1;
                         }
                     }
+                    //registramos el precio total
+                    PrecioTotal();
                     if (servicioNoValido!=0) {
                         JOptionPane.showMessageDialog(null,servicioNoValido+" servicios no son validos", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
@@ -173,6 +184,36 @@ public class Servicios implements Serializable{
             }
         }
         return numero;
+    }
+    
+    //metodo para contar el precio total
+    public void PrecioTotal(){
+        
+        //copiando cada elemento de los servicios
+        for (int i = 0; i < ContadorServicios(); i++) {
+            Servicios s1 =libreria_servicios[i];
+            String Repuestos="";
+            float precioTotal=s1.getPrecio_mano_obra();
+            
+            
+            //obteniendo la lista de repuestos y buscandolos
+            String[] listaRepuestos = s1.getLista_repuestos().split(";");
+            
+            for (int j = 0; j < libreria_inventario.length; j++) {
+                if (libreria_inventario[j]!=null){
+                    for (int k = 0; k < listaRepuestos.length; k++) {
+                        if (libreria_inventario[j].getID().equals(listaRepuestos[k])) {
+                            Repuestos=Repuestos+libreria_inventario[j].getNombre()+", ";
+                            precioTotal= precioTotal+libreria_inventario[j].getPrecio();
+                        }
+                    }
+                }
+            } 
+            
+            s1.setPrecioTotal(precioTotal);
+            libreria_servicios[i]=s1;
+            
+        }
     }
     
 }

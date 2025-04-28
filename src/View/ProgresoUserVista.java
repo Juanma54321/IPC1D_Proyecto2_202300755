@@ -4,7 +4,7 @@
  */
 package View;
 
-import Controller.HiloEstatico;
+import Model.HiloEstatico;
 import Controller.ProgresoListener;
 
 /**

@@ -1,27 +1,26 @@
 
 package Controller;
 
+import Model.HiloEstatico;
+import Model.HiloTablas;
 import Model.Servicios;
 import static Model.Servicios.libreria_servicios;
 import Model.Usuarios;
 import Model.Vehiculos;
 import static Model.Vehiculos.libreria_vehiculos;
-import View.ProgresoAdminVista;
 import View.ProgresoUserVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
     public class TiemposEspera implements ActionListener{
    
-    private Usuarios model;
+
     private Usuarios user;
     private Servicios s;
-    private ProgresoAdminVista viewAdmin;
     private ProgresoUserVista viewUser;
-    private Vehiculos veh;
+
     
     //capacidad de 50 carros en el taller para esperar
     public static Vehiculos[] colaEspera = new Vehiculos[50];
@@ -58,26 +57,15 @@ import javax.swing.table.DefaultTableModel;
     }    
     
     //constructor
-    public TiemposEspera(Usuarios user,Usuarios model,Servicios s,Vehiculos veh, ProgresoAdminVista viewAdmin, ProgresoUserVista viewUser) {
-        this.model = model;
+    public TiemposEspera(Usuarios user,Servicios s, ProgresoUserVista viewUser) {
         this.user=user;
-        this.viewAdmin = viewAdmin;
         this.viewUser = viewUser;
         this.s=s;
-        this.veh=veh;
+
         //acciones de los botones de la vista del cliente
         this.viewUser.btnAñadir.addActionListener(this);
         this.viewUser.btnProcesar.addActionListener(this);
     }
-    
-    //metodo para iniciar la vista de Adim
-    public void InciarVistaAdmin(){
-        viewAdmin.setVisible(true);
-        viewAdmin.setTitle("Progreso Autos");
-        viewAdmin.setLocationRelativeTo(null);
-    
-    }
-    
     //metodo para inciar la vista de user
     public void IniciarVistaUser(){
         viewUser.setVisible(true);
@@ -173,6 +161,7 @@ import javax.swing.table.DefaultTableModel;
                     libreria_servicios[servicio].getNombre_servicio()
                 });
             }
+            v1.setCostoTotal(libreria_servicios[servicio].getPrecioTotal());
             libreria_vehiculos[v1.ContadorVehiculos()]=v1;
             
             
