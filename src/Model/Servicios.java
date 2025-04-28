@@ -158,6 +158,8 @@ public class Servicios implements Serializable{
                             libreria_servicios[ContadorServicios()]=s1;
                         }
                     }
+                    
+                    JOptionPane.showMessageDialog(null,"Servicios agregados correctamente","INFO", JOptionPane.INFORMATION_MESSAGE);
                     //registramos el precio total
                     PrecioTotal();
                     if (servicioNoValido!=0) {

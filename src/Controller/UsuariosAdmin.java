@@ -122,8 +122,6 @@ public class UsuariosAdmin implements ActionListener{
                 model.RegistroUsuario(ObtenerRuta(), view);
                 //acutalizando la vista de la tabla
                 RefreshTabla();
-                //mensaje de infromacion
-                JOptionPane.showMessageDialog(view,"Usuarios registrados con exito", "INFO", JOptionPane.INFORMATION_MESSAGE);
                 //actualizando el combo box para la lista de vehiculos
                 RefreshListaDueños();
                 break;

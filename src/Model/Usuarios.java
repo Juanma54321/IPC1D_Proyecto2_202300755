@@ -143,10 +143,11 @@ public class Usuarios implements Serializable {
 
                         }
                     }
+                    
                     //ordedando los usuarios por el DPI
                     Ordenamiento(libreria_usuarios);
                     OrdearPlacas();
-                    
+                    JOptionPane.showMessageDialog(null,"Clientes agregados correctamente","INFO", JOptionPane.INFORMATION_MESSAGE);
                 }
                 catch(IOException f){
                     //mensaje de error

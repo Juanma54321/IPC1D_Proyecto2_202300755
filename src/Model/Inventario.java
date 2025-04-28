@@ -132,6 +132,8 @@ public class Inventario implements Serializable {
                             libreria_inventario[ContadorRepuestos()]=b1;
                         }
                     }
+                    
+                    JOptionPane.showMessageDialog(null,"Repuestos agregados correctamente","INFO", JOptionPane.INFORMATION_MESSAGE);
                 }
                 catch(IOException f){
                     //mensaje de error
